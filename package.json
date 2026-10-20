@@ -1,0 +1,13 @@
+{
+  "name": "amaru-rios-portfolio-xp",
+  "version": "1.0.0",
+  "description": "Portafolio interactivo de Amaru Ríos Figueroa con estética Windows XP Luna",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -l 3000",
+    "dev": "npx serve . -l 3000"
+  },
+  "keywords": ["portfolio", "windows-xp", "fullstack", "software-engineer"],
+  "author": "Amaru Ríos Figueroa",
+  "license": "MIT"
+}

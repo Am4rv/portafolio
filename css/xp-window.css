@@ -1,0 +1,380 @@
+/* ==========================================================================
+   Windows XP Window Management & Chrome CSS
+   Portafolio Amaru Ríos Figueroa
+   ========================================================================== */
+
+.xp-window {
+  position: absolute;
+  background-color: var(--xp-win-bg);
+  border: 3px solid var(--xp-win-border);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 260px;
+  min-height: 180px;
+  z-index: 10;
+  transition: transform 0.15s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.15s ease;
+}
+
+.xp-window.inactive {
+  border-color: var(--xp-win-border-inactive);
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.xp-window.minimized {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.65) translateY(200px);
+}
+
+.xp-window.maximized {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+/* Window Titlebar */
+.xp-titlebar {
+  height: 28px;
+  min-height: 28px;
+  background: var(--xp-win-title-active);
+  padding: 0 4px 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: grab;
+  user-select: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.xp-titlebar:active {
+  cursor: grabbing;
+}
+
+.xp-window.inactive .xp-titlebar {
+  background: var(--xp-win-title-inactive);
+}
+
+.xp-titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.xp-titlebar-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xp-titlebar-title {
+  color: #FFFFFF;
+  font-family: var(--font-title);
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  text-shadow: 1px 1px 1px #0A246A;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.xp-window.inactive .xp-titlebar-title {
+  color: #DDE5F2;
+  text-shadow: 1px 1px 1px #4A6388;
+}
+
+/* Titlebar Buttons */
+.xp-titlebar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.xp-btn-ctrl {
+  width: 21px;
+  height: 21px;
+  border-radius: 3px;
+  border: 1px solid #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-size: cover;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 1px 2px rgba(0, 0, 0, 0.35);
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Minimize & Maximize Buttons */
+.xp-btn-min, .xp-btn-max {
+  background: linear-gradient(to bottom, #499BEA 0%, #2076DF 30%, #155EC2 70%, #2B86E8 100%);
+  color: #FFFFFF;
+}
+
+.xp-btn-min:hover, .xp-btn-max:hover {
+  background: linear-gradient(to bottom, #6AB3F8 0%, #368DF0 30%, #226DD4 70%, #469BF2 100%);
+}
+
+.xp-btn-min:active, .xp-btn-max:active {
+  background: linear-gradient(to bottom, #1555B0 0%, #10438E 50%, #2062BA 100%);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Close Button (Iconic XP Red) */
+.xp-btn-close {
+  background: linear-gradient(to bottom, #E87258 0%, #E04526 25%, #C22207 70%, #DE5238 100%);
+  color: #FFFFFF;
+  margin-left: 2px;
+}
+
+.xp-btn-close:hover {
+  background: linear-gradient(to bottom, #FA8D76 0%, #F55536 25%, #DE270B 70%, #FA6B52 100%);
+}
+
+.xp-btn-close:active {
+  background: linear-gradient(to bottom, #A11A05 0%, #7D1100 50%, #A81F08 100%);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.xp-window.inactive .xp-btn-ctrl {
+  filter: grayscale(40%) opacity(0.85);
+}
+
+/* Window Menu Bar (Archivo, Edición, etc.) */
+.xp-menubar {
+  height: 20px;
+  background-color: var(--xp-win-bg);
+  border-bottom: 1px solid #D5D1C3;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.xp-menu-item {
+  padding: 2px 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  color: #000;
+  border-radius: 2px;
+  font-size: 11px;
+}
+
+.xp-menu-item:hover {
+  background-color: var(--xp-select-blue);
+  color: #FFFFFF;
+}
+
+/* Window Explorer Toolbar / Address Bar */
+.xp-toolbar {
+  background: linear-gradient(to bottom, #F7F5EE 0%, #E5DFD1 100%);
+  border-bottom: 1px solid #D1CCC0;
+  padding: 3px 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.xp-address-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.xp-address-input {
+  flex: 1;
+  height: 20px;
+  background: #FFFFFF;
+  border: 1px solid #7F9DB9;
+  padding: 0 5px;
+  font-family: var(--font-tahoma);
+  font-size: 11px;
+  color: #000;
+  outline: none;
+}
+
+/* Window Body Content Area */
+.xp-window-body {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+  background-color: #FFFFFF;
+}
+
+.xp-window-body.gray-bg {
+  background-color: var(--xp-win-bg);
+}
+
+/* Window Status Bar */
+.xp-statusbar {
+  height: 22px;
+  background-color: var(--xp-win-bg);
+  border-top: 1px solid #D6D2C4;
+  padding: 2px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #444;
+}
+
+.xp-status-pane {
+  border-left: 1px solid #FFF;
+  border-right: 1px solid #AFA89A;
+  padding: 0 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Classic XP Tabs Dialog */
+.xp-tabs-header {
+  display: flex;
+  gap: 2px;
+  padding: 8px 10px 0 10px;
+  background-color: var(--xp-win-bg);
+  border-bottom: 1px solid #919B9C;
+}
+
+.xp-tab-btn {
+  padding: 4px 12px;
+  background: linear-gradient(to bottom, #F9F8F5 0%, #ECE9D8 100%);
+  border: 1px solid #919B9C;
+  border-bottom: none;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  position: relative;
+  top: 1px;
+  color: #222;
+}
+
+.xp-tab-btn:hover {
+  background: #FFFFFF;
+}
+
+.xp-tab-btn.active {
+  background: #FFFFFF;
+  font-weight: bold;
+  border-bottom: 1px solid #FFFFFF;
+  padding-bottom: 5px;
+  z-index: 2;
+}
+
+.xp-tab-content {
+  display: none;
+  padding: 14px;
+  background-color: #FFFFFF;
+}
+
+.xp-tab-content.active {
+  display: block;
+}
+
+/* XP Form Controls & Standard Buttons */
+.xp-button {
+  background: var(--xp-btn-bg);
+  border: 1px solid var(--xp-btn-border);
+  border-radius: 3px;
+  padding: 3px 14px;
+  font-family: var(--font-tahoma);
+  font-size: 11px;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 #FFF, 0 1px 1px rgba(0, 0, 0, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  text-decoration: none;
+  color: #000;
+  outline: none;
+}
+
+.xp-button:hover {
+  background: var(--xp-btn-hover);
+  border-color: #e5a43d;
+}
+
+.xp-button:active {
+  background: linear-gradient(to bottom, #D8D2C4 0%, #ECE9D8 100%);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.xp-button.primary {
+  border: 2px solid #0055ea;
+  font-weight: bold;
+}
+
+/* XP Groupbox / Fieldset */
+.xp-groupbox {
+  border: 1px solid #D5D1C3;
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  background-color: #FAFAFA;
+}
+
+.xp-groupbox legend {
+  font-size: 11px;
+  font-weight: bold;
+  color: #003399;
+  padding: 0 4px;
+}
+
+/* Resizer Grip Handle */
+.xp-resizer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 14px;
+  height: 14px;
+  cursor: nwse-resize;
+  background: radial-gradient(circle, #666 1px, transparent 1.5px);
+  background-size: 4px 4px;
+  z-index: 20;
+}
+
+/* XP Styled Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ECE9D8;
+  border-left: 1px solid #D8D2C4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #ECE9D8 0%, #F5F3EC 40%, #D8D2C4 100%);
+  border: 1px solid #B0A99A;
+  box-shadow: inset 1px 1px 0 #FFF;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #FFF3D6 0%, #FFE6AA 50%, #F0CE7A 100%);
+  border-color: #C29630;
+}
+
+::-webkit-scrollbar-button {
+  background: #ECE9D8;
+  border: 1px solid #B0A99A;
+  height: 16px;
+  width: 16px;
+}

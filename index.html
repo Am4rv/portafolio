@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amaru Ríos Figueroa | Software Engineer - Portafolio Windows XP</title>
+  <meta name="description" content="Portafolio profesional interactivo de Amaru Ríos Figueroa, Software Engineer & Desarrollador Full-Stack (Python, FastAPI, Flask, React, MongoDB, AWS). Inspirado en Windows XP Luna.">
+  <meta name="keywords" content="Amaru Ríos, Software Engineer, Full Stack, Python, FastAPI, Flask, React, MongoDB, MySQL, AWS, Portafolio, Windows XP">
+  <meta name="author" content="Amaru Ríos Figueroa">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230058EE'/><text x='16' y='22' font-family='sans-serif' font-size='16' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+
+  <!-- Core Libraries loaded in head -->
+  <script src="js/icons.js"></script>
+  <script src="js/sound.js"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/xp-base.css">
+  <link rel="stylesheet" href="css/xp-window.css">
+  <link rel="stylesheet" href="css/xp-taskbar.css">
+  <link rel="stylesheet" href="css/xp-apps.css">
+</head>
+<body>
+
+  <!-- CRT Monitor Scanlines Effect (Toggled in Display Properties) -->
+  <div class="scanlines-overlay"></div>
+
+  <!-- Matrix Background Canvas -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- ========================================================================
+       DESKTOP CONTAINER
+       ======================================================================== -->
+  <div id="xp-desktop">
+    <!-- Bliss Wallpaper Background Artwork -->
+    <div class="wallpaper-bliss">
+      <!-- Soft Fluffy Clouds -->
+      <div class="bliss-cloud cloud-1"></div>
+      <div class="bliss-cloud cloud-2"></div>
+      <div class="bliss-cloud cloud-3"></div>
+      <div class="bliss-cloud cloud-4"></div>
+
+      <!-- Rolling Green Hills SVG -->
+      <svg class="bliss-hills-svg" viewBox="0 0 1440 600" preserveAspectRatio="none" fill="none">
+        <defs>
+          <linearGradient id="back-hill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#72be24"/>
+            <stop offset="45%" stop-color="#499713"/>
+            <stop offset="100%" stop-color="#246408"/>
+          </linearGradient>
+          <linearGradient id="front-hill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#8ce034"/>
+            <stop offset="30%" stop-color="#5fb518"/>
+            <stop offset="85%" stop-color="#3b8a0d"/>
+            <stop offset="100%" stop-color="#225b06"/>
+          </linearGradient>
+        </defs>
+        <!-- Back hill -->
+        <path d="M-100 280 Q 250 80 650 200 T 1540 180 L 1540 600 L -100 600 Z" fill="url(#back-hill)" opacity="0.95"/>
+        <!-- Front hill with iconic XP curve -->
+        <path d="M-100 360 Q 450 140 920 280 T 1540 220 L 1540 600 L -100 600 Z" fill="url(#front-hill)"/>
+      </svg>
+    </div>
+
+    <!-- Desktop Icons Grid -->
+    <div class="desktop-icons-container" id="desktop-icons">
+      <!-- Icons are injected dynamically by js/desktop.js -->
+    </div>
+
+    <!-- Rubber-Band Marquee Selection Box -->
+    <div id="selection-box"></div>
+
+    <!-- Desktop Right-Click Context Menu -->
+    <div id="desktop-context-menu" class="xp-context-menu">
+      <div class="xp-context-item" id="ctx-refresh">Actualizar</div>
+      <div class="xp-context-separator"></div>
+      <div class="xp-context-item" id="ctx-cv">Ver Curriculum Vitae</div>
+      <div class="xp-context-item" data-launch="win-projects">Explorar Proyectos</div>
+      <div class="xp-context-item" data-launch="win-skills">Ver Habilidades</div>
+      <div class="xp-context-separator"></div>
+      <div class="xp-context-item" id="ctx-props">Propiedades de pantalla</div>
+    </div>
+
+    <!-- ======================================================================
+         WINDOWS APPLICATION INSTANCES
+         ====================================================================== -->
+
+    <!-- 1. MI PC / SOBRE MÍ (System Properties Dialog) -->
+    <div id="win-about" class="xp-window" data-title="Mi PC - Propiedades del Sistema" data-icon="my-computer" style="display: none;">
+      <div class="xp-titlebar">
+        <div class="xp-titlebar-left">
+          <div class="xp-titlebar-icon"></div>
+          <span class="xp-titlebar-title">Propiedades del Sistema - Amaru Ríos</span>
+        </div>
+        <div class="xp-titlebar-buttons">
+          <button class="xp-btn-ctrl xp-btn-min" title="Minimizar">_</button>
+          <button class="xp-btn-ctrl xp-btn-max" title="Maximizar">□</button>
+          <button class="xp-btn-ctrl xp-btn-close" title="Cerrar">✕</button>
+        </div>
+      </div>
+      <div class="xp-window-body gray-bg">
+        <div class="xp-tabs-header">
+          <button class="xp-tab-btn active" data-target-tab="tab-general">General</button>
+          <button class="xp-tab-btn" data-target-tab="tab-profile">Perfil Profesional</button>
+          <button class="xp-tab-btn" data-target-tab="tab-education">Educación</button>
+          <button class="xp-tab-btn" data-target-tab="tab-certs">Certificaciones</button>
+        </div>
+
+        <!-- Tab 1: General -->
+        <div id="tab-general" class="xp-tab-content active">
+          <div class="sys-prop-banner">
+            <div class="sys-pc-illustration" data-icon="my-computer" data-icon-size="64"></div>
+            <div class="sys-specs-grid">
+              <span class="sys-label">Sistema:</span>
+              <span class="sys-val">AmaruOS XP Professional v2026</span>
+
+              <span class="sys-label">Desarrollador:</span>
+              <span class="sys-val"><strong>Amaru Ríos Figueroa</strong></span>
+
+              <span class="sys-label">Especialidad:</span>
+              <span class="sys-val">Software Engineer / Full-Stack</span>
+
+              <span class="sys-label">Ubicación:</span>
+              <span class="sys-val">Santiago, Chile 🇨🇱</span>
+
+              <span class="sys-label">Universidad:</span>
+              <span class="sys-val">UTEM (Ing. en Informática)</span>
+
+              <span class="sys-label">Stack Principal:</span>
+              <span class="sys-val">Python (FastAPI, Flask) | React | MongoDB | AWS</span>
+            </div>
+          </div>
+
+          <fieldset class="xp-groupbox">
+            <legend>Contacto Rápido</legend>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <a href="https://www.linkedin.com/in/amaru-rios-figueroa-02a391319/" target="_blank" class="xp-button">
+                LinkedIn ↗
+              </a>
+              <a href="https://github.com/Am4rv" target="_blank" class="xp-button">
+                GitHub ↗
+              </a>
+              <a href="mailto:amaruriosfigueroa@gmail.com" class="xp-button">
+                Enviar Correo
+              </a>
+              <a href="https://wa.me/56949254442" target="_blank" class="xp-button primary">
+                WhatsApp (+56 9 49254442)
+              </a>
+            </div>
+          </fieldset>
+
+          <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 10px;">
+            <button class="xp-button primary" onclick="window.windowManager.openWindow('win-projects')">Ver Experiencia</button>
+            <button class="xp-button" onclick="window.windowManager.closeWindow('win-about')">Aceptar</button>
+          </div>
+        </div>
+
+        <!-- Tab 2: Perfil Profesional -->
+        <div id="tab-profile" class="xp-tab-content">
+          <fieldset class="xp-groupbox">
+            <legend>Descripción Profesional</legend>
+            <p style="line-height: 1.6; font-size: 11px; color: #222;">
+              Software Engineer con sólida experiencia en desarrollo <strong>Full Stack</strong>. Especializado en la construcción de <strong>APIs robustas</strong> (Python/Flask, FastAPI), optimización de bases de datos (MongoDB, MySQL, PostgreSQL) y desarrollo de interfaces de usuario modernas.
+            </p>
+            <p style="margin-top: 8px; line-height: 1.6; font-size: 11px; color: #222;">
+              Orientado a la resolución técnica de problemas complejos, validación de integraciones y rendimiento de sistemas, garantizando la estabilidad del software y adaptándome rápidamente a nuevas arquitecturas y herramientas cloud.
+            </p>
+          </fieldset>
+
+          <fieldset class="xp-groupbox">
+            <legend>Puntos Clave de Enfoque</legend>
+            <ul style="padding-left: 18px; line-height: 1.5; font-size: 11px;">
+              <li>Arquitectura de APIs REST escalables y seguras con Python (Flask / FastAPI).</li>
+              <li>Modelado, limpieza, transformación (ETL) y optimización de bases de datos relacionales y NoSQL.</li>
+              <li>Frontend dinámico y responsivo con React, TypeScript, JavaScript y Bootstrap.</li>
+              <li>Cumplimiento de estándares internacionales de seguridad (ISO 27001 / ISO 27701).</li>
+            </ul>
+          </fieldset>
+        </div>
+
+        <!-- Tab 3: Educación -->
+        <div id="tab-education" class="xp-tab-content">
+          <fieldset class="xp-groupbox">
+            <legend>Título Universitario</legend>
+            <div style="font-size: 12px; font-weight: bold; color: #003399; margin-bottom: 4px;">
+              Ingeniería en Informática
+            </div>
+            <div style="font-size: 11px; color: #333; margin-bottom: 6px;">
+              <strong>Universidad Tecnológica Metropolitana (UTEM)</strong>
+            </div>
+            <div style="font-size: 11px; color: #666; margin-bottom: 10px;">
+              Marzo 2020 – Enero 2025
+            </div>
+            <p style="font-size: 11px; line-height: 1.5; color: #333;">
+              Formación integral en ciencias de la computación, desarrollo de software, algoritmos, estructuras de datos, redes, seguridad informática, gestión ágil de proyectos y bases de datos relacionales y no relacionales.
+            </p>
+          </fieldset>
+        </div>
+
+        <!-- Tab 4: Certificaciones -->
+        <div id="tab-certs" class="xp-tab-content">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="border: 1px solid #D1D7E0; padding: 8px; border-radius: 4px; background: #FFF;">
+              <div style="font-weight: bold; color: #003399;">AWS Academy Graduate - Introducción a la nube</div>
+              <div style="font-size: 10px; color: #666; margin-top: 2px;">Conceptos básicos de AWS para entornos escalables y arquitectura en la nube.</div>
+            </div>
+
+            <div style="border: 1px solid #D1D7E0; padding: 8px; border-radius: 4px; background: #FFF;">
+              <div style="font-weight: bold; color: #003399;">ISO 27001 - Versión 2022</div>
+              <div style="font-size: 10px; color: #666; margin-top: 2px;">Sistemas de Gestión de Seguridad de la Información (SGSI).</div>
+            </div>
+
+            <div style="border: 1px solid #D1D7E0; padding: 8px; border-radius: 4px; background: #FFF;">
+              <div style="font-weight: bold; color: #003399;">Taller Introducción a la ISO 27001</div>
+              <div style="font-size: 10px; color: #666; margin-top: 2px;">Principios fundamentales y controles de ciberseguridad.</div>
+            </div>
+
+            <div style="border: 1px solid #D1D7E0; padding: 8px; border-radius: 4px; background: #FFF;">
+              <div style="font-weight: bold; color: #003399;">Concientización de seguridad #2 & Gestión de Riesgos 2</div>
+              <div style="font-size: 10px; color: #666; margin-top: 2px;">Mitigación de vulnerabilidades y gestión integral de riesgos tecnológicos.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="xp-statusbar">
+        <div class="xp-status-pane">Estado: Listo</div>
+        <div class="xp-status-pane">AmaruOS v5.1</div>
+      </div>
+    </div>
+
+    <!-- 2. MIS DOCUMENTOS / EXPERIENCIA Y PROYECTOS (Windows Explorer) -->
+    <div id="win-projects" class="xp-window" data-title="Mis Documentos - Experiencia y Proyectos" data-icon="my-documents" style="display: none;">
+      <div class="xp-titlebar">
+        <div class="xp-titlebar-left">
+          <div class="xp-titlebar-icon"></div>
+          <span class="xp-titlebar-title">Mis Documentos\Experiencia_Profesional</span>
+        </div>
+        <div class="xp-titlebar-buttons">
+          <button class="xp-btn-ctrl xp-btn-min">_</button>
+          <button class="xp-btn-ctrl xp-btn-max">□</button>
+          <button class="xp-btn-ctrl xp-btn-close">✕</button>
+        </div>
+      </div>
+      <div class="xp-menubar">
+        <span class="xp-menu-item">Archivo</span>
+        <span class="xp-menu-item">Edición</span>
+        <span class="xp-menu-item">Ver</span>
+        <span class="xp-menu-item">Favoritos</span>
+        <span class="xp-menu-item">Herramientas</span>
+        <span class="xp-menu-item">Ayuda</span>
+      </div>
+      <div class="xp-toolbar">
+        <span style="color: #666;">Dirección:</span>
+        <div class="xp-address-bar">
+          <input type="text" class="xp-address-input" value="C:\Amaru\Experiencia_y_Proyectos" readonly>
+        </div>
+      </div>
+      <div class="xp-window-body">
+        <div class="explorer-layout">
+          <!-- Sidebar -->
+          <div class="explorer-sidebar">
+            <div class="sidebar-box">
+              <div class="sidebar-box-header">
+                <span>Tareas de archivos</span>
+                <span>▲</span>
+              </div>
+              <div class="sidebar-box-content">
+                <a class="sidebar-link" href="https://github.com/Am4rv" target="_blank">
+                  📁 Ver perfil de GitHub
+                </a>
+                <a class="sidebar-link" href="https://www.linkedin.com/in/amaru-rios-figueroa-02a391319/" target="_blank">
+                  💼 Ver en LinkedIn
+                </a>
+                <div class="sidebar-link" onclick="window.windowManager.openWindow('win-notepad')">
+                  📝 Abrir CV en Notepad
+                </div>
+                <div class="sidebar-link" onclick="window.windowManager.openWindow('win-msn')">
+                  💬 Contactar por MSN
+                </div>
+              </div>
+            </div>
+
+            <div class="sidebar-box">
+              <div class="sidebar-box-header">
+                <span>Otros sitios</span>
+                <span>▲</span>
+              </div>
+              <div class="sidebar-box-content">
+                <div class="sidebar-link" onclick="window.windowManager.openWindow('win-about')">🖥️ Mi PC</div>
+                <div class="sidebar-link" onclick="window.windowManager.openWindow('win-skills')">⚡ Habilidades.exe</div>
+                <div class="sidebar-link" onclick="window.windowManager.openWindow('win-cmd')">💻 Terminal cmd</div>
+              </div>
+            </div>
+
+            <div class="sidebar-box">
+              <div class="sidebar-box-header">
+                <span>Detalles</span>
+                <span>▲</span>
+              </div>
+              <div class="sidebar-box-content" style="font-size: 10px; color: #333;">
+                <strong>Experiencia Total:</strong><br>
+                Desarrollo Full-Stack, Backend Python, APIs y Bases de Datos.
+              </div>
+            </div>
+          </div>
+
+          <!-- Explorer Content: Work Experience Cards -->
+          <div class="explorer-content">
+            <!-- Experience Item 1 -->
+            <div class="project-card-xp">
+              <div class="project-header">
+                <span class="project-title">Desarrollo e Innovación — Eniax Care</span>
+                <span class="project-badge">Full-Stack Developer</span>
+              </div>
+              <div class="project-role-dates">
+                Desarrollador Full-Stack | Agosto 2025 – Julio 2026
+              </div>
+              <ul class="project-desc-list">
+                <li>Desarrollo de nuevas herramientas internas y plataformas de software orientadas a la optimización de procesos operativos y la atención digital integral de pacientes.</li>
+                <li>Diseño e implementación de soluciones <strong>Full Stack</strong> completas, participando activamente tanto en la arquitectura de backend como en el frontend interactivo.</li>
+                <li>Construcción y mantenimiento continuo de <strong>APIs y microservicios</strong> de alta disponibilidad utilizando <strong>Python y Flask</strong>.</li>
+                <li>Desarrollo de interfaces de usuario web dinámicas y responsivas con JavaScript, HTML5, CSS3 y Bootstrap.</li>
+                <li>Gestión, modelado y optimización de bases de datos <strong>MongoDB</strong> y <strong>MySQL</strong>, incluyendo tareas de limpieza, transformación de datos (ETL) y análisis.</li>
+                <li>Implementación de mejoras en seguridad, robustecimiento y validación estricta de datos en aplicaciones internas.</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tag-pill">Python</span>
+                <span class="tag-pill">Flask</span>
+                <span class="tag-pill">MongoDB</span>
+                <span class="tag-pill">MySQL</span>
+                <span class="tag-pill">JavaScript</span>
+                <span class="tag-pill">HTML/CSS</span>
+                <span class="tag-pill">Bootstrap</span>
+                <span class="tag-pill">Seguridad</span>
+              </div>
+            </div>
+
+            <!-- Experience Item 2 -->
+            <div class="project-card-xp">
+              <div class="project-header">
+                <span class="project-title">Departamento de Pregrado — Universidad de Chile</span>
+                <span class="project-badge">Analista Programador</span>
+              </div>
+              <div class="project-role-dates">
+                Analista Programador | Noviembre 2024 – Enero 2025
+              </div>
+              <ul class="project-desc-list">
+                <li>Desarrolló el <strong>Sistema de Ingresos Especiales (SIE)</strong>, plataforma crucial que automatiza integralmente el proceso de selección y admisión de estudiantes a la universidad por vías de ingreso especiales.</li>
+                <li>Implementó el backend completo del <strong>Sistema AFE</strong> (Actividades Finales de Egreso) empleando <strong>Python, FastAPI y MongoDB</strong>, optimizando la gestión de actividades para académicos, estudiantes y personal administrativo.</li>
+                <li>Desplegó la API REST asegurando que el equipo de Front-End pudiera consumir endpoints de manera eficiente, garantizando una integración fluida y una mejor experiencia de usuario.</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tag-pill">Python</span>
+                <span class="tag-pill">FastAPI</span>
+                <span class="tag-pill">MongoDB</span>
+                <span class="tag-pill">APIs REST</span>
+                <span class="tag-pill">Postman</span>
+                <span class="tag-pill">U. de Chile</span>
+              </div>
+            </div>
+
+            <!-- Experience Item 3 / Proyectos Personales -->
+            <div class="project-card-xp">
+              <div class="project-header">
+                <span class="project-title">Proyectos de Código Abierto & GitHub</span>
+                <span class="project-badge">github.com/Am4rv</span>
+              </div>
+              <p style="font-size: 11px; line-height: 1.5; color: #333; margin-bottom: 8px;">
+                Repositorios con implementaciones de backend escalables, arquitecturas basadas en microservicios, pruebas automatizadas, contenedores Docker y prototipos con Flutter y Dart.
+              </p>
+              <a href="https://github.com/Am4rv" target="_blank" class="xp-button">
+                Explorar repositorios en GitHub ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="xp-statusbar">
+        <div class="xp-status-pane">3 elementos en Experiencia</div>
+        <div class="xp-status-pane">Espacio libre: 100 GB</div>
+      </div>
+    </div>
+
+    <!-- 3. HABILIDADES.EXE (Skills Manager) -->
+    <div id="win-skills" class="xp-window" data-title="Habilidades.exe - Stack Tecnológico" data-icon="skills" style="display: none;">
+      <div class="xp-titlebar">
+        <div class="xp-titlebar-left">
+          <div class="xp-titlebar-icon"></div>
+          <span class="xp-titlebar-title">Habilidades.exe - Administrador de Rendimiento y Tecnologías</span>
+        </div>
+        <div class="xp-titlebar-buttons">
+          <button class="xp-btn-ctrl xp-btn-min">_</button>
+          <button class="xp-btn-ctrl xp-btn-max">□</button>
+          <button class="xp-btn-ctrl xp-btn-close">✕</button>
+        </div>
+      </div>
+      <div class="xp-window-body gray-bg">
+        <div class="skills-grid">
+          <!-- Category: Frontend -->
+          <div class="skill-category-box">
+            <div class="skill-cat-title">
+              <span>🎨 Frontend</span>
+            </div>
+            <div class="skill-meter-row">
+              <span>React</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 88%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>JavaScript (ES6+)</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 92%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>TypeScript</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 82%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>HTML5 & CSS3</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 95%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>Bootstrap</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 90%;"></div></div>
+            </div>
+          </div>
+
+          <!-- Category: Backend -->
+          <div class="skill-category-box">
+            <div class="skill-cat-title">
+              <span>⚙️ Backend</span>
+            </div>
+            <div class="skill-meter-row">
+              <span>Python</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 95%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>FastAPI</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 90%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>Flask</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 92%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>APIs RESTful</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 94%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>Postman / Tests</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 88%;"></div></div>
+            </div>
+          </div>
+
+          <!-- Category: Databases & Cloud -->
+          <div class="skill-category-box">
+            <div class="skill-cat-title">
+              <span>☁️ Bases de Datos & Cloud</span>
+            </div>
+            <div class="skill-meter-row">
+              <span>MongoDB</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 90%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>MySQL</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 88%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>PostgreSQL</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 85%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>AWS Cloud</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 82%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>Docker & GCP</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 80%;"></div></div>
+            </div>
+          </div>
+
+          <!-- Category: Others & Standards -->
+          <div class="skill-category-box">
+            <div class="skill-cat-title">
+              <span>🛡️ Estándares & Otros</span>
+            </div>
+            <div class="skill-meter-row">
+              <span>ISO 27001 / 27701</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 88%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>Git & GitHub</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 92%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>Scrum & Agile</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 89%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>C / C++</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 78%;"></div></div>
+            </div>
+            <div class="skill-meter-row">
+              <span>Dart & Flutter</span>
+              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 75%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="xp-statusbar">
+        <div class="xp-status-pane">Rendimiento: 100% Óptimo</div>
+        <div class="xp-status-pane">Procesos: 20 Activos</div>
+      </div>
+    </div>
+
+    <!-- 4. NOTEPAD / CURRICULUM.TXT -->
+    <div id="win-notepad" class="xp-window" data-title="Curriculum.txt - Bloc de notas" data-icon="notepad" style="display: none;">
+      <div class="xp-titlebar">
+        <div class="xp-titlebar-left">
+          <div class="xp-titlebar-icon"></div>
+          <span class="xp-titlebar-title">Curriculum.txt - Bloc de notas</span>
+        </div>
+        <div class="xp-titlebar-buttons">
+          <button class="xp-btn-ctrl xp-btn-min">_</button>
+          <button class="xp-btn-ctrl xp-btn-max">□</button>
+          <button class="xp-btn-ctrl xp-btn-close">✕</button>
+        </div>
+      </div>
+      <div class="xp-menubar">
+        <span class="xp-menu-item" id="np-copy-btn">Copiar texto</span>
+        <span class="xp-menu-item" id="np-print-btn">Imprimir / PDF</span>
+        <span class="xp-menu-item" id="np-wrap-btn">Ajuste de línea: Sí</span>
+      </div>
+      <div class="xp-window-body">
+        <div class="notepad-container">
+          <textarea id="notepad-text" class="notepad-textarea" spellcheck="false">===================================================================
+AMARU RÍOS FIGUEROA - SOFTWARE ENGINEER / FULL-STACK DEVELOPER
+===================================================================
+Teléfono : (+56) 9 49254442
+Email    : amaruriosfigueroa@gmail.com
+LinkedIn : https://www.linkedin.com/in/amaru-rios-figueroa-02a391319/
+GitHub   : https://github.com/Am4rv
+Ubicación: Santiago, Chile
+
+-------------------------------------------------------------------
+PERFIL PROFESIONAL
+-------------------------------------------------------------------
+Software Engineer con experiencia en desarrollo Full Stack. Especializado
+en la construcción de APIs robustas (Python/Flask, FastAPI), optimización
+de bases de datos (MongoDB, MySQL) y desarrollo de interfaces de usuario.
+Orientado a la resolución técnica de problemas y a la validación de
+integraciones, garantizando la estabilidad del software y adaptándome
+rápidamente a nuevas arquitecturas y herramientas.
+
+-------------------------------------------------------------------
+EXPERIENCIA PROFESIONAL
+-------------------------------------------------------------------
+Desarrollo e Innovación - Eniax Care
+Desarrollador Full-Stack: Agosto/2025 – Julio/2026
+● Desarrollo de nuevas herramientas internas y plataformas orientadas a la
+  optimización de procesos operativos y atención digital de pacientes.
+● Diseño e implementación de soluciones full stack, participando tanto en
+  backend como frontend.
+● Construcción y mantenimiento de APIs y servicios utilizando Python y Flask.
+● Desarrollo de interfaces web dinámicas con JavaScript, HTML, CSS y Bootstrap.
+● Gestión y modelado de bases de datos MongoDB y MySQL, incluyendo limpieza,
+  transformación y análisis de datos.
+● Implementación de mejoras en seguridad, validación de datos en aplicaciones
+  internas.
+
+Departamento de pregrado - Universidad de Chile
+Analista programador: Noviembre/2024 – Enero/2025
+● Desarrollé el Sistema de Ingresos Especiales (SIE), una plataforma que
+  automatiza el proceso de selección de estudiantes admitidos a la
+  universidad a través de vías de ingreso especiales.
+● Implementé el backend del Sistema AFE (Actividades Finales de Egreso) con
+  Python, FastAPI y MongoDB, optimizando la gestión de actividades para
+  académicos, estudiantes y administradores.
+● Desplegué la API para que el equipo de Front-End pudiera consumir los
+  endpoints de manera eficiente, asegurando una integración fluida y una
+  mejor experiencia de usuario.
+
+-------------------------------------------------------------------
+EDUCACIÓN
+-------------------------------------------------------------------
+● Universidad Tecnológica Metropolitana (UTEM)
+  Ingeniería en Informática | Mar 2020 - Ene 2025
+
+-------------------------------------------------------------------
+APTITUDES TÉCNICAS
+-------------------------------------------------------------------
+● Frontend: React, JavaScript, TypeScript, HTML, CSS, Bootstrap
+● Backend: Python, Flask, FastAPI, APIs REST, Postman
+● Bases de datos y Cloud: MongoDB, MySQL, PostgreSQL, AWS (certificado), GCP, Docker
+● Otros lenguajes: C/C++, Dart, Flutter
+● Otros: Git/GitHub, Scrum/Agile, ISO 27001/27701, Inglés básico
+
+-------------------------------------------------------------------
+CERTIFICACIONES
+-------------------------------------------------------------------
+● AWS Academy Graduate - Introducción a la nube (Conceptos básicos de AWS para entornos escalables)
+● ISO 27001 - Versión 2022
+● Taller Introducción a la ISO 27001
+● Concientización de seguridad #2
+● Gestión de Riesgos 2
+===================================================================</textarea>
+        </div>
+      </div>
+      <div class="xp-statusbar">
+        <div class="xp-status-pane" id="notepad-line-col">Lín 1, Col 1</div>
+        <div class="xp-status-pane">UTF-8</div>
+      </div>
+    </div>
+
+    <!-- 5. MSN MESSENGER 7.0 -->
+    <div id="win-msn" class="xp-window" data-title="MSN Messenger - Amaru Ríos" data-icon="msn" style="display: none;">
+      <div class="xp-titlebar">
+        <div class="xp-titlebar-left">
+          <div class="xp-titlebar-icon"></div>
+          <span class="xp-titlebar-title">MSN Messenger - Conversación con Amaru Ríos</span>
+        </div>
+        <div class="xp-titlebar-buttons">
+          <button class="xp-btn-ctrl xp-btn-min">_</button>
+          <button class="xp-btn-ctrl xp-btn-max">□</button>
+          <button class="xp-btn-ctrl xp-btn-close">✕</button>
+        </div>
+      </div>
+      <div class="xp-window-body">
+        <div class="msn-container">
+          <div class="msn-header-user">
+            <div class="msn-avatar-box" data-icon="user-avatar" data-icon-size="34"></div>
+            <div>
+              <div style="font-weight: bold; font-size: 12px;">Amaru Ríos Figueroa</div>
+              <div style="font-size: 10px; opacity: 0.9;">&lt;amaruriosfigueroa@gmail.com&gt;</div>
+              <div style="font-size: 10px; margin-top: 2px;">
+                Estado: 🟢 <strong>Disponible</strong> (Ingeniero Full-Stack)
+              </div>
+            </div>
+          </div>
+
+          <div class="msn-toolbar">
+            <button class="xp-button" id="msn-nudge-btn">⚡ ¡Zumbido!</button>
+            <button class="xp-button" id="msn-open-wa">💬 WhatsApp</button>
+            <button class="xp-button" id="msn-open-mail">✉️ Enviar Correo</button>
+          </div>
+
+          <div class="msn-chat-history" id="msn-chat-history">
+            <div class="msn-msg amaru">
+              <span class="msn-msg-sender">Amaru Ríos dice:</span>
+              <span class="msn-msg-time">(13:00)</span>
+              <div class="msn-msg-body">
+                ¡Hola! Bienvenido a mi portafolio estilo Windows XP. Puedes escribirme aquí o contactarme directamente a mi WhatsApp (+56 9 49254442). ¿En qué proyecto puedo ayudarte?
+              </div>
+            </div>
+          </div>
+
+          <div class="msn-input-area">
+            <input type="text" id="msn-chat-input" class="msn-input" placeholder="Escribe un mensaje aquí y presiona Enter...">
+            <button id="msn-send-btn" class="xp-button primary">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. TERMINAL / CMD.EXE -->
+    <div id="win-cmd" class="xp-window" data-title="Símbolo del sistema" data-icon="cmd" style="display: none;">
+      <div class="xp-titlebar">
+        <div class="xp-titlebar-left">
+          <div class="xp-titlebar-icon"></div>
+          <span class="xp-titlebar-title">Símbolo del sistema - cmd.exe</span>
+        </div>
+        <div class="xp-titlebar-buttons">
+          <button class="xp-btn-ctrl xp-btn-min">_</button>
+          <button class="xp-btn-ctrl xp-btn-max">□</button>
+          <button class="xp-btn-ctrl xp-btn-close">✕</button>
+        </div>
+      </div>
+      <div class="xp-window-body" style="background: #000;">
+        <div class="cmd-container">
+          <div id="cmd-output-area">
+            <div class="cmd-output">Microsoft Windows XP [Versión 5.1.2600]
+(C) Copyright 1985-2001 Microsoft Corp. / Portafolio Amaru Ríos Figueroa
+
+Escribe 'help' para ver los comandos interactivos disponibles.
+            </div>
+          </div>
+          <div class="cmd-line">
+            <span class="cmd-prompt-text">C:\Documents and Settings\Amaru&gt;</span>
+            <input type="text" id="cmd-input-field" class="cmd-input" autofocus spellcheck="false" autocomplete="off">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. WINDOWS MEDIA PLAYER -->
+    <div id="win-wmp" class="xp-window" data-title="Windows Media Player" data-icon="media-player" style="display: none;">
+      <div class="xp-titlebar">
+        <div class="xp-titlebar-left">
+          <div class="xp-titlebar-icon"></div>
+          <span class="xp-titlebar-title">Windows Media Player</span>
+        </div>
+        <div class="xp-titlebar-buttons">
+          <button class="xp-btn-ctrl xp-btn-min">_</button>
+          <button class="xp-btn-ctrl xp-btn-max">□</button>
+          <button class="xp-btn-ctrl xp-btn-close">✕</button>
+        </div>
+      </div>
+      <div class="xp-window-body">
+        <div class="wmp-container">
+          <div class="wmp-visualizer">
+            <canvas id="wmp-canvas" width="480" height="230"></canvas>
+          </div>
+          <div class="wmp-controls-bar">
+            <div class="wmp-track-info">
+              <span id="wmp-title" class="wmp-track-title">Amaru Lo-Fi Synth Journey</span>
+              <span class="wmp-track-artist">Procedural Web Audio Engine</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button id="wmp-play-btn" class="wmp-btn-round" title="Reproducir / Pausar">▶</button>
+              <button id="wmp-next-btn" class="wmp-btn-round" style="width: 26px; height: 26px; font-size: 10px;" title="Siguiente Pista">⏭</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. MS PAINT -->
+    <div id="win-paint" class="xp-window" data-title="Paint.exe" data-icon="paint" style="display: none;">
+      <div class="xp-titlebar">
+        <div class="xp-titlebar-left">
+          <div class="xp-titlebar-icon"></div>
+          <span class="xp-titlebar-title">sin título - Paint</span>
+        </div>
+        <div class="xp-titlebar-buttons">
+          <button class="xp-btn-ctrl xp-btn-min">_</button>
+          <button class="xp-btn-ctrl xp-btn-max">□</button>
+          <button class="xp-btn-ctrl xp-btn-close">✕</button>
+        </div>
+      </div>
+      <div class="xp-menubar">
+        <span class="xp-menu-item" id="paint-clear-btn">Limpiar lienzo</span>
+        <span class="xp-menu-item" id="paint-save-btn">Guardar imagen</span>
+      </div>
+      <div class="xp-window-body">
+        <div class="paint-layout">
+          <div class="paint-toolbox">
+            <button class="paint-tool-btn active" data-tool="pencil" title="Lápiz">✏️</button>
+            <button class="paint-tool-btn" data-tool="brush" title="Pincel">🖌️</button>
+            <button class="paint-tool-btn" data-tool="eraser" title="Borrador">🧹</button>
+            <button class="paint-tool-btn" data-tool="fill" title="Relleno">🪣</button>
+          </div>
+          <div class="paint-canvas-area">
+            <div class="paint-canvas-wrapper">
+              <canvas id="paint-canvas" width="520" height="320"></canvas>
+            </div>
+            <div class="paint-color-bar">
+              <div id="paint-curr-color" style="width: 20px; height: 20px; background: #000; border: 1px solid #000;"></div>
+              <div class="paint-palette-grid" id="paint-palette"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. BUSCAMINAS (Minesweeper) -->
+    <div id="win-minesweeper" class="xp-window" data-title="Buscaminas" data-icon="minesweeper" style="display: none;">
+      <div class="xp-titlebar">
+        <div class="xp-titlebar-left">
+          <div class="xp-titlebar-icon"></div>
+          <span class="xp-titlebar-title">Buscaminas</span>
+        </div>
+        <div class="xp-titlebar-buttons">
+          <button class="xp-btn-ctrl xp-btn-min">_</button>
+          <button class="xp-btn-ctrl xp-btn-close">✕</button>
+        </div>
+      </div>
+      <div class="xp-window-body gray-bg" style="padding: 10px; display: flex; align-items: center; justify-content: center;">
+        <div class="minesweeper-frame">
+          <div class="mine-top-bar">
+            <div id="mine-count-display" class="mine-lcd">010</div>
+            <button id="mine-smiley" class="mine-smiley-btn">🙂</button>
+            <div id="mine-timer-display" class="mine-lcd">000</div>
+          </div>
+          <div id="mine-grid" class="mine-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. PROPIEDADES DE PANTALLA (Display Properties / Control Panel) -->
+    <div id="win-display" class="xp-window" data-title="Propiedades de Pantalla" data-icon="control-panel" style="display: none;">
+      <div class="xp-titlebar">
+        <div class="xp-titlebar-left">
+          <div class="xp-titlebar-icon"></div>
+          <span class="xp-titlebar-title">Propiedades de Pantalla - Personalización</span>
+        </div>
+        <div class="xp-titlebar-buttons">
+          <button class="xp-btn-ctrl xp-btn-min">_</button>
+          <button class="xp-btn-ctrl xp-btn-close">✕</button>
+        </div>
+      </div>
+      <div class="xp-window-body gray-bg" style="padding: 14px;">
+        <fieldset class="xp-groupbox">
+          <legend>Tema del Sistema</legend>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="font-size: 11px;">Seleccionar tema visual:</label>
+            <select id="theme-select" style="padding: 4px; font-family: var(--font-tahoma); font-size: 11px; border: 1px solid #7F9DB9;">
+              <option value="bliss">Windows XP Luna Blue (Clásico Bliss)</option>
+              <option value="royale">Windows XP Royale (Energy Blue)</option>
+              <option value="dark">Windows XP Zune / Dark Mode</option>
+              <option value="matrix">The Matrix (Digital Rain)</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset class="xp-groupbox">
+          <legend>Efectos Retro & Sonido</legend>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="crt-toggle">
+              <span>Activar líneas de escaneo monitor CRT</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+              <input type="checkbox" id="sound-fx-toggle" checked>
+              <span>Efectos de sonido retro habilitados</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 14px;">
+          <button id="display-apply-btn" class="xp-button primary">Aceptar</button>
+          <button class="xp-button" onclick="window.windowManager.closeWindow('win-display')">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. PAPELERA DE RECICLAJE -->
+    <div id="win-recycle" class="xp-window" data-title="Papelera de reciclaje" data-icon="recycle-bin" style="display: none;">
+      <div class="xp-titlebar">
+        <div class="xp-titlebar-left">
+          <div class="xp-titlebar-icon"></div>
+          <span class="xp-titlebar-title">Papelera de reciclaje</span>
+        </div>
+        <div class="xp-titlebar-buttons">
+          <button class="xp-btn-ctrl xp-btn-min">_</button>
+          <button class="xp-btn-ctrl xp-btn-max">□</button>
+          <button class="xp-btn-ctrl xp-btn-close">✕</button>
+        </div>
+      </div>
+      <div class="xp-toolbar">
+        <button id="trash-empty-btn" class="xp-button">Vaciar la papelera de reciclaje</button>
+      </div>
+      <div class="xp-window-body" style="padding: 10px;">
+        <div id="trash-items-list" style="display: flex; flex-direction: column; gap: 6px; font-size: 11px;">
+          <div style="display: flex; align-items: center; gap: 8px; padding: 4px; border-bottom: 1px solid #EEE;">
+            <span>📄</span>
+            <span style="font-weight: bold; flex: 1;">bug_en_produccion_viernes_5pm.py</span>
+            <span style="color: #888;">0 KB (Eliminado para siempre)</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 4px; border-bottom: 1px solid #EEE;">
+            <span>📁</span>
+            <span style="font-weight: bold; flex: 1;">node_modules_gigante</span>
+            <span style="color: #888;">1.4 GB</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 4px; border-bottom: 1px solid #EEE;">
+            <span>📄</span>
+            <span style="font-weight: bold; flex: 1;">final_v2_este_si_definitivo_final.zip</span>
+            <span style="color: #888;">45 MB</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; padding: 4px;">
+            <span>📄</span>
+            <span style="font-weight: bold; flex: 1;">css_hack_no_tocar_por_favor.css</span>
+            <span style="color: #888;">2 KB</span>
+          </div>
+        </div>
+      </div>
+      <div class="xp-statusbar">
+        <div class="xp-status-pane">4 elementos en papelera</div>
+      </div>
+    </div>
+
+  </div> <!-- /#xp-desktop -->
+
+  <!-- ========================================================================
+       START MENU (2 COLUMNS)
+       ======================================================================== -->
+  <div id="start-menu">
+    <div class="start-menu-header">
+      <div class="start-avatar" data-icon="user-avatar" data-icon-size="36"></div>
+      <div class="start-user-info">
+        <span class="start-user-name">Amaru Ríos Figueroa</span>
+        <span class="start-user-title">Software Engineer / Full-Stack</span>
+      </div>
+    </div>
+    <div class="start-menu-columns">
+      <!-- Left Column (Frequent Programs) -->
+      <div class="start-col-left">
+        <div class="start-item" data-launch="win-about">
+          <div class="start-item-icon" data-icon="my-computer" data-icon-size="26"></div>
+          <div class="start-item-text">
+            <span class="start-item-name">Mi PC (Sobre Mí)</span>
+            <span class="start-item-desc">Perfil y Especificaciones</span>
+          </div>
+        </div>
+
+        <div class="start-item" data-launch="win-projects">
+          <div class="start-item-icon" data-icon="my-documents" data-icon-size="26"></div>
+          <div class="start-item-text">
+            <span class="start-item-name">Mis Documentos</span>
+            <span class="start-item-desc">Experiencia y Proyectos</span>
+          </div>
+        </div>
+
+        <div class="start-item" data-launch="win-skills">
+          <div class="start-item-icon" data-icon="skills" data-icon-size="26"></div>
+          <div class="start-item-text">
+            <span class="start-item-name">Habilidades.exe</span>
+            <span class="start-item-desc">Stack Tecnológico</span>
+          </div>
+        </div>
+
+        <div class="start-item" data-launch="win-notepad">
+          <div class="start-item-icon" data-icon="notepad" data-icon-size="26"></div>
+          <div class="start-item-text">
+            <span class="start-item-name">Bloc de notas</span>
+            <span class="start-item-desc">Curriculum Vitae</span>
+          </div>
+        </div>
+
+        <div class="start-item" data-launch="win-msn">
+          <div class="start-item-icon" data-icon="msn" data-icon-size="26"></div>
+          <div class="start-item-text">
+            <span class="start-item-name">MSN Messenger</span>
+            <span class="start-item-desc">Chat & Contacto Directo</span>
+          </div>
+        </div>
+
+        <div class="start-item" data-launch="win-cmd">
+          <div class="start-item-icon" data-icon="cmd" data-icon-size="26"></div>
+          <div class="start-item-text">
+            <span class="start-item-name">Símbolo del sistema</span>
+            <span class="start-item-desc">Terminal cmd.exe</span>
+          </div>
+        </div>
+
+        <div class="start-divider"></div>
+
+        <div class="start-item" data-launch="win-wmp">
+          <div class="start-item-icon" data-icon="media-player" data-icon-size="24"></div>
+          <div class="start-item-text">
+            <span class="start-item-name">Windows Media Player</span>
+          </div>
+        </div>
+
+        <div class="start-item" data-launch="win-paint">
+          <div class="start-item-icon" data-icon="paint" data-icon-size="24"></div>
+          <div class="start-item-text">
+            <span class="start-item-name">Paint</span>
+          </div>
+        </div>
+
+        <div class="start-item" data-launch="win-minesweeper">
+          <div class="start-item-icon" data-icon="minesweeper" data-icon-size="24"></div>
+          <div class="start-item-text">
+            <span class="start-item-name">Buscaminas</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column (System Shortcuts) -->
+      <div class="start-col-right">
+        <a class="start-item" href="https://github.com/Am4rv" target="_blank">
+          <div class="start-item-icon" data-icon="github" data-icon-size="20"></div>
+          <div class="start-item-text">
+            <span class="start-item-name bold">GitHub (Am4rv) ↗</span>
+          </div>
+        </a>
+
+        <a class="start-item" href="https://www.linkedin.com/in/amaru-rios-figueroa-02a391319/" target="_blank">
+          <div class="start-item-icon" data-icon="linkedin" data-icon-size="20"></div>
+          <div class="start-item-text">
+            <span class="start-item-name bold">LinkedIn ↗</span>
+          </div>
+        </a>
+
+        <div class="start-divider"></div>
+
+        <div class="start-item" data-launch="win-display">
+          <div class="start-item-icon" data-icon="control-panel" data-icon-size="20"></div>
+          <div class="start-item-text">
+            <span class="start-item-name">Panel de Control</span>
+          </div>
+        </div>
+
+        <div class="start-item" data-launch="win-recycle">
+          <div class="start-item-icon" data-icon="recycle-bin" data-icon-size="20"></div>
+          <div class="start-item-text">
+            <span class="start-item-name">Papelera de reciclaje</span>
+          </div>
+        </div>
+
+        <div class="start-divider"></div>
+
+        <a class="start-item" href="mailto:amaruriosfigueroa@gmail.com">
+          <div class="start-item-icon">✉️</div>
+          <div class="start-item-text">
+            <span class="start-item-name">Enviar Correo</span>
+          </div>
+        </a>
+
+        <a class="start-item" href="https://wa.me/56949254442" target="_blank">
+          <div class="start-item-icon">📱</div>
+          <div class="start-item-text">
+            <span class="start-item-name">WhatsApp Directo</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Start Menu Footer -->
+    <div class="start-menu-footer">
+      <button class="start-footer-btn open-shutdown">
+        <span>🔑</span>
+        <span>Cerrar sesión</span>
+      </button>
+      <button class="start-footer-btn open-shutdown">
+        <span style="color: #FF5555; font-weight: bold;">⏻</span>
+        <span>Apagar equipo</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       TASKBAR (BOTTOM BAR)
+       ======================================================================== -->
+  <div id="xp-taskbar">
+    <button id="start-button">
+      <span style="display: flex; align-items: center;" data-icon="start-flag" data-icon-size="20"></span>
+      <span class="start-text">inicio</span>
+    </button>
+
+    <div id="taskbar-windows">
+      <!-- Running app tabs injected here -->
+    </div>
+
+    <div id="system-tray">
+      <div class="tray-icons">
+        <button id="tray-sound-btn" class="tray-icon-btn" title="Sonido (Clic para silenciar)" data-icon="sound" data-icon-size="16"></button>
+        <span title="Seguridad activa (ISO 27001)" style="cursor: pointer;" onclick="window.windowManager.openWindow('win-about')" data-icon="shield" data-icon-size="16"></span>
+      </div>
+      <div id="tray-clock" title="Hora actual">12:00 PM</div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       BALLOON NOTIFICATION TOOLTIP
+       ======================================================================== -->
+  <div id="xp-balloon">
+    <div class="balloon-header">
+      <span>¡Bienvenido a AmaruOS XP!</span>
+      <button id="balloon-close" class="balloon-close">✕</button>
+    </div>
+    <div class="balloon-body">
+      Explora el portafolio de <strong>Amaru Ríos</strong> con ventanas interactivas, terminal cmd.exe, MSN Messenger y Buscaminas.
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       SHUTDOWN MODAL & TURN OFF SCREEN
+       ======================================================================== -->
+  <div id="shutdown-overlay">
+    <div class="shutdown-dialog">
+      <div class="shutdown-header">
+        <span>Apagar el equipo</span>
+        <span style="font-size: 11px; opacity: 0.8;">AmaruOS XP</span>
+      </div>
+      <div class="shutdown-options">
+        <button class="shutdown-btn-item" id="btn-action-standby">
+          <div class="shutdown-btn-icon shutdown-btn-standby">🌙</div>
+          <span>Suspender</span>
+        </button>
+        <button class="shutdown-btn-item" id="btn-action-poweroff">
+          <div class="shutdown-btn-icon shutdown-btn-power">⏻</div>
+          <span>Apagar</span>
+        </button>
+        <button class="shutdown-btn-item" id="btn-action-restart">
+          <div class="shutdown-btn-icon shutdown-btn-restart">🔄</div>
+          <span>Reiniciar</span>
+        </button>
+      </div>
+      <div style="display: flex; justify-content: flex-end;">
+        <button class="xp-button" id="btn-cancel-shutdown">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="powered-off-screen">
+    <h1>Ahora puede apagar el equipo con seguridad.</h1>
+    <button id="btn-turn-on" class="xp-button primary" style="font-size: 14px; padding: 8px 24px;">Encender de nuevo</button>
+  </div>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/window-manager.js"></script>
+  <script src="js/apps/cmd.js"></script>
+  <script src="js/apps/minesweeper.js"></script>
+  <script src="js/apps/paint.js"></script>
+  <script src="js/apps/media-player.js"></script>
+  <script src="js/apps/msn.js"></script>
+  <script src="js/apps/notepad.js"></script>
+  <script src="js/apps/control-panel.js"></script>
+  <script src="js/desktop.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

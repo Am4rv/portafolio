@@ -1,0 +1,737 @@
+/* ==========================================================================
+   Windows XP Application-Specific Styles
+   Portafolio Amaru Ríos Figueroa
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Windows Explorer (Mis Proyectos y Experiencia)
+   -------------------------------------------------------------------------- */
+.explorer-layout {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+.explorer-sidebar {
+  width: 190px;
+  background: linear-gradient(to bottom, #7BA2E7 0%, #6375D6 100%);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  border-right: 1px solid #4D61B7;
+}
+
+.sidebar-box {
+  background: #FFFFFF;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-box-header {
+  background: linear-gradient(to right, #215DC6 0%, #6296E7 100%);
+  color: #FFFFFF;
+  font-weight: bold;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.sidebar-box-content {
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #D3E5FA;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #0C327D;
+  text-decoration: none;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.sidebar-link:hover {
+  background: #FFFFFF;
+  text-decoration: underline;
+}
+
+.explorer-content {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  background: #FFFFFF;
+}
+
+.project-card-xp {
+  border: 1px solid #D1D7E0;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 12px;
+  background: #FDFDFE;
+  transition: all 0.15s ease;
+}
+
+.project-card-xp:hover {
+  border-color: #316AC5;
+  box-shadow: 0 2px 8px rgba(49, 106, 197, 0.2);
+}
+
+.project-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.project-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #003399;
+}
+
+.project-badge {
+  font-size: 10px;
+  background: #EAF2FF;
+  border: 1px solid #99BEEF;
+  color: #15428B;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.project-role-dates {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.project-desc-list {
+  padding-left: 16px;
+  margin-bottom: 10px;
+  line-height: 1.45;
+  color: #222;
+}
+
+.project-desc-list li {
+  margin-bottom: 4px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.tag-pill {
+  font-size: 10px;
+  background: #F0F0F0;
+  border: 1px solid #D0D0D0;
+  padding: 2px 7px;
+  border-radius: 3px;
+  color: #333;
+}
+
+/* --------------------------------------------------------------------------
+   2. System Properties (Mi PC / Sobre Mí)
+   -------------------------------------------------------------------------- */
+.sys-prop-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #DCD8CB;
+}
+
+.sys-pc-illustration {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sys-specs-grid {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  row-gap: 8px;
+  font-size: 11px;
+}
+
+.sys-label {
+  font-weight: bold;
+  color: #444;
+}
+
+.sys-val {
+  color: #000;
+}
+
+/* --------------------------------------------------------------------------
+   3. Notepad (Curriculum.txt)
+   -------------------------------------------------------------------------- */
+.notepad-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.notepad-textarea {
+  flex: 1;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  resize: none;
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+/* --------------------------------------------------------------------------
+   4. Command Prompt (cmd.exe)
+   -------------------------------------------------------------------------- */
+.cmd-container {
+  background-color: #000000;
+  color: #CCCCCC;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 8px 10px;
+  height: 100%;
+  overflow-y: auto;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.cmd-output {
+  white-space: pre-wrap;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+.cmd-line {
+  display: flex;
+  align-items: center;
+}
+
+.cmd-prompt-text {
+  color: #00FF66;
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+.cmd-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  outline: none;
+  caret-color: #00FF66;
+}
+
+/* --------------------------------------------------------------------------
+   5. MSN Messenger 7.0 (Contacto en Vivo)
+   -------------------------------------------------------------------------- */
+.msn-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #E8EEF7;
+}
+
+.msn-header-user {
+  background: linear-gradient(to bottom, #759AD8 0%, #4D76BE 100%);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #FFF;
+}
+
+.msn-avatar-box {
+  width: 40px;
+  height: 40px;
+  background: #FFF;
+  border-radius: 4px;
+  border: 1px solid #2B4E8C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.msn-status-select {
+  background: #FFFFFF;
+  border: 1px solid #7F9DB9;
+  font-size: 11px;
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+
+.msn-chat-history {
+  flex: 1;
+  padding: 10px;
+  background: #FFFFFF;
+  border-top: 1px solid #A2BBE0;
+  border-bottom: 1px solid #A2BBE0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.msn-msg {
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.msn-msg-sender {
+  font-weight: bold;
+}
+
+.msn-msg.amaru .msn-msg-sender {
+  color: #0033CC;
+}
+
+.msn-msg.visitor .msn-msg-sender {
+  color: #CC3300;
+}
+
+.msn-msg-time {
+  font-size: 9px;
+  color: #888;
+  margin-left: 6px;
+}
+
+.msn-toolbar {
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #F1F4FA;
+}
+
+.msn-input-area {
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+  background: #F6F8FC;
+}
+
+.msn-input {
+  flex: 1;
+  height: 28px;
+  border: 1px solid #7F9DB9;
+  padding: 0 8px;
+  font-family: var(--font-tahoma);
+  font-size: 11px;
+  outline: none;
+}
+
+/* --------------------------------------------------------------------------
+   6. Buscaminas (Minesweeper)
+   -------------------------------------------------------------------------- */
+.minesweeper-frame {
+  background: #C0C0C0;
+  padding: 8px;
+  border: 3px solid;
+  border-color: #FFFFFF #808080 #808080 #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.mine-top-bar {
+  border: 2px solid;
+  border-color: #808080 #FFFFFF #FFFFFF #808080;
+  padding: 4px 6px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #C0C0C0;
+}
+
+.mine-lcd {
+  background: #000000;
+  color: #FF0000;
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 1px 4px;
+  letter-spacing: 2px;
+  border: 1px solid #808080;
+  min-width: 48px;
+  text-align: right;
+}
+
+.mine-smiley-btn {
+  width: 26px;
+  height: 26px;
+  background: #C0C0C0;
+  border: 2px solid;
+  border-color: #FFFFFF #808080 #808080 #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.mine-smiley-btn:active {
+  border-color: #808080 #FFFFFF #FFFFFF #808080;
+}
+
+.mine-grid {
+  border: 3px solid;
+  border-color: #808080 #FFFFFF #FFFFFF #808080;
+  display: grid;
+  grid-template-columns: repeat(9, 20px);
+  grid-template-rows: repeat(9, 20px);
+  background: #7B7B7B;
+}
+
+.mine-cell {
+  width: 20px;
+  height: 20px;
+  background: #C0C0C0;
+  border: 2px solid;
+  border-color: #FFFFFF #808080 #808080 #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+
+.mine-cell.revealed {
+  border: 1px solid #7B7B7B;
+  background: #C0C0C0;
+}
+
+.mine-cell[data-val="1"] { color: #0000FF; }
+.mine-cell[data-val="2"] { color: #008000; }
+.mine-cell[data-val="3"] { color: #FF0000; }
+.mine-cell[data-val="4"] { color: #000080; }
+.mine-cell[data-val="5"] { color: #800000; }
+
+/* --------------------------------------------------------------------------
+   7. MS Paint
+   -------------------------------------------------------------------------- */
+.paint-layout {
+  display: flex;
+  height: 100%;
+  background: #C0C0C0;
+}
+
+.paint-toolbox {
+  width: 54px;
+  border-right: 1px solid #808080;
+  padding: 4px;
+  display: grid;
+  grid-template-columns: repeat(2, 22px);
+  gap: 3px;
+  align-content: start;
+}
+
+.paint-tool-btn {
+  width: 22px;
+  height: 22px;
+  background: #C0C0C0;
+  border: 1px solid;
+  border-color: #FFFFFF #808080 #808080 #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.paint-tool-btn.active {
+  border-color: #808080 #FFFFFF #FFFFFF #808080;
+  background: #E0E0E0;
+}
+
+.paint-canvas-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.paint-canvas-wrapper {
+  flex: 1;
+  background: #808080;
+  padding: 8px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: auto;
+}
+
+#paint-canvas {
+  background: #FFFFFF;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  cursor: crosshair;
+}
+
+.paint-color-bar {
+  height: 36px;
+  background: #ECE9D8;
+  border-top: 1px solid #808080;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  gap: 8px;
+}
+
+.paint-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(14, 15px);
+  grid-template-rows: repeat(2, 14px);
+  gap: 2px;
+}
+
+.palette-swatch {
+  width: 15px;
+  height: 14px;
+  border: 1px solid #808080;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   8. Windows Media Player (WMP)
+   -------------------------------------------------------------------------- */
+.wmp-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: linear-gradient(to bottom, #111A2E 0%, #060912 100%);
+  color: #FFF;
+}
+
+.wmp-visualizer {
+  flex: 1;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#wmp-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.wmp-controls-bar {
+  padding: 10px 14px;
+  background: linear-gradient(to bottom, #2C436F 0%, #15223C 100%);
+  border-top: 1px solid #4C6DAA;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wmp-btn-round {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #4986EA 0%, #1A4EB7 100%);
+  border: 1px solid #86B2F8;
+  color: #FFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.wmp-btn-round:hover {
+  background: linear-gradient(to bottom, #6098F6 0%, #2960CE 100%);
+}
+
+.wmp-track-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+}
+
+.wmp-track-title {
+  font-weight: bold;
+  color: #7BB2FF;
+}
+
+.wmp-track-artist {
+  color: #9DBFEF;
+  font-size: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   9. Habilidades.exe (Skills Manager)
+   -------------------------------------------------------------------------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  padding: 12px;
+}
+
+.skill-category-box {
+  border: 1px solid #7F9DB9;
+  border-radius: 4px;
+  background: #FFFFFF;
+  padding: 10px;
+}
+
+.skill-cat-title {
+  font-weight: bold;
+  color: #003399;
+  font-size: 12px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid #E5E5E5;
+  padding-bottom: 4px;
+}
+
+.skill-meter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+
+.skill-meter-bar {
+  width: 100px;
+  height: 12px;
+  background: #E0E0E0;
+  border: 1px solid #707070;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.skill-meter-fill {
+  height: 100%;
+  background: linear-gradient(to right, #41C34A 0%, #76DC3E 100%);
+}
+
+/* --------------------------------------------------------------------------
+   10. Shutdown Dialog & Screen
+   -------------------------------------------------------------------------- */
+#shutdown-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: grayscale(100%) brightness(80%);
+}
+
+.shutdown-dialog {
+  width: 380px;
+  background: linear-gradient(to bottom, #0055EA 0%, #003399 100%);
+  border: 1px solid #FFFFFF;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  padding: 14px;
+  color: #FFFFFF;
+}
+
+.shutdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  padding-bottom: 8px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.shutdown-options {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.shutdown-btn-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #FFF;
+  font-size: 11px;
+}
+
+.shutdown-btn-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+  border: 1px solid #FFF;
+}
+
+.shutdown-btn-item:hover .shutdown-btn-icon {
+  transform: scale(1.08);
+}
+
+.shutdown-btn-standby { background: linear-gradient(135deg, #FFB732, #D47B00); }
+.shutdown-btn-power { background: linear-gradient(135deg, #FF453A, #B31005); }
+.shutdown-btn-restart { background: linear-gradient(135deg, #32D74B, #1B882B); }
+
+#powered-off-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000000;
+  background: #000000;
+  color: #FF9900;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  text-align: center;
+  padding: 20px;
+}
+
+#powered-off-screen h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: normal;
+  letter-spacing: 1px;
+}

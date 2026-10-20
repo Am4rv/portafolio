@@ -1,0 +1,290 @@
+/* ==========================================================================
+   Windows XP Luna Theme - Base Design System & CSS Variables
+   Portafolio Amaru Ríos Figueroa
+   ========================================================================== */
+
+:root {
+  /* Luna Blue Theme Palette */
+  --xp-desktop-bg: #225AD6;
+  --xp-taskbar-bg: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #245edb 92%, #1941a5 100%);
+  --xp-taskbar-border: #1941a5;
+  --xp-taskbar-height: 34px;
+  
+  --xp-start-bg: linear-gradient(to bottom, #3b9b3e 0%, #5cb85c 12%, #429f46 25%, #368d3a 80%, #206824 100%);
+  --xp-start-hover: linear-gradient(to bottom, #4cb54f 0%, #6ec96e 12%, #4eb552 25%, #3e9e42 80%, #247529 100%);
+  --xp-start-active: linear-gradient(to bottom, #2b702e 0%, #3a8a3e 25%, #2f7733 80%, #174d1a 100%);
+  --xp-start-shadow: inset 1px 1px 1px rgba(255,255,255,0.8), 2px 0 4px rgba(0,0,0,0.4);
+
+  --xp-tray-bg: linear-gradient(to bottom, #0c3298 0%, #1449cb 12%, #0e38a4 50%, #0b2e8c 100%);
+  --xp-tray-border: #082269;
+
+  --xp-win-title-active: linear-gradient(to bottom, #0058ee 0%, #3593ff 4%, #288eff 18%, #127dff 35%, #036ffc 70%, #0262ee 100%);
+  --xp-win-title-inactive: linear-gradient(to bottom, #7697c7 0%, #8ba8d5 6%, #7697c7 20%, #688ab9 70%, #5d7fae 100%);
+  --xp-win-border: #0055ea;
+  --xp-win-border-inactive: #688ab9;
+  --xp-win-bg: #ECE9D8;
+  --xp-win-text: #000000;
+
+  --xp-btn-bg: linear-gradient(to bottom, #FFFFFF 0%, #ECE9D8 15%, #DED8CC 85%, #B5AFA4 100%);
+  --xp-btn-border: #003c74;
+  --xp-btn-hover: linear-gradient(to bottom, #FFFBF0 0%, #FFE8B2 25%, #FFD680 85%, #E5A43D 100%);
+  
+  --xp-select-blue: #316ac5;
+  --xp-select-text: #FFFFFF;
+
+  --font-tahoma: "Tahoma", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "Lucida Console", "Courier New", monospace;
+  --font-title: "Trebuchet MS", "Tahoma", sans-serif;
+}
+
+/* Alternate Theme: XP Royale (Energy Blue) */
+body[data-theme="royale"] {
+  --xp-taskbar-bg: linear-gradient(to bottom, #225287 0%, #3476be 9%, #245893 20%, #1a4270 100%);
+  --xp-start-bg: linear-gradient(to bottom, #2864a6 0%, #438ad8 15%, #2a6db9 45%, #1d5089 100%);
+  --xp-win-title-active: linear-gradient(to bottom, #1d589e 0%, #3988dc 4%, #2b78ce 18%, #1b5ba4 100%);
+  --xp-win-border: #1d589e;
+}
+
+/* Alternate Theme: XP Zune / Dark Mode */
+body[data-theme="dark"] {
+  --xp-desktop-bg: #141416;
+  --xp-taskbar-bg: linear-gradient(to bottom, #2d2d2d 0%, #424242 12%, #2a2a2a 20%, #1e1e1e 100%);
+  --xp-start-bg: linear-gradient(to bottom, #f26522 0%, #ff8345 15%, #e05412 50%, #b84007 100%);
+  --xp-win-title-active: linear-gradient(to bottom, #2d2d2d 0%, #4c4c4c 4%, #383838 18%, #202020 100%);
+  --xp-win-border: #282828;
+  --xp-win-bg: #272727;
+  --xp-win-text: #EEEEEE;
+  --xp-tray-bg: #1a1a1a;
+  --xp-btn-bg: linear-gradient(to bottom, #444 0%, #333 100%);
+  --xp-btn-border: #555;
+  --xp-btn-hover: linear-gradient(to bottom, #555 0%, #444 100%);
+}
+
+/* Alternate Theme: Matrix */
+body[data-theme="matrix"] {
+  --xp-desktop-bg: #000000;
+  --xp-taskbar-bg: linear-gradient(to bottom, #002200 0%, #004400 12%, #001a00 100%);
+  --xp-start-bg: linear-gradient(to bottom, #008800 0%, #00cc00 15%, #006600 100%);
+  --xp-win-title-active: linear-gradient(to bottom, #003300 0%, #006600 4%, #002200 100%);
+  --xp-win-border: #00aa00;
+  --xp-win-bg: #051005;
+  --xp-win-text: #00ff66;
+  --xp-select-blue: #005500;
+}
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-tahoma);
+  font-size: 11px;
+  color: var(--xp-win-text);
+  background-color: var(--xp-desktop-bg);
+}
+
+/* Desktop Canvas Container */
+#xp-desktop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: var(--xp-taskbar-height);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bliss Wallpaper - Scalable CSS Artwork with rolling hills and sky */
+.wallpaper-bliss {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(to bottom, 
+    #136ac7 0%, 
+    #2c88e5 25%, 
+    #5aa5f2 45%, 
+    #93c5f9 65%, 
+    #bfe0fd 82%, 
+    #deefff 88%,
+    #b3db6a 90%, 
+    #69af22 96%, 
+    #3f880f 100%
+  );
+  overflow: hidden;
+}
+
+/* Bliss Clouds & Hills SVG */
+.bliss-hills-svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65%;
+  pointer-events: none;
+}
+
+/* Cloud generator */
+.bliss-cloud {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0) 80%);
+  border-radius: 50%;
+  filter: blur(12px);
+  pointer-events: none;
+  animation: floatCloud 120s linear infinite;
+}
+
+.cloud-1 { top: 12%; left: 15%; width: 350px; height: 90px; opacity: 0.85; }
+.cloud-2 { top: 22%; left: 60%; width: 420px; height: 110px; opacity: 0.75; animation-duration: 160s; }
+.cloud-3 { top: 8%; left: 80%; width: 260px; height: 70px; opacity: 0.6; animation-duration: 200s; }
+.cloud-4 { top: 28%; left: -5%; width: 380px; height: 85px; opacity: 0.7; animation-duration: 140s; }
+
+@keyframes floatCloud {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(40px); }
+  100% { transform: translateX(0); }
+}
+
+/* Matrix Background Canvas */
+#matrix-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: none;
+}
+body[data-theme="matrix"] #matrix-canvas {
+  display: block;
+}
+body[data-theme="matrix"] .wallpaper-bliss {
+  display: none;
+}
+
+/* CRT Scanlines Overlay (Optional vintage retro effect) */
+.scanlines-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 99998;
+  pointer-events: none;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 3px, 6px 100%;
+}
+body.crt-enabled .scanlines-overlay {
+  display: block;
+}
+
+/* Desktop Icons Grid */
+.desktop-icons-container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(auto-fill, 86px);
+  grid-auto-columns: 82px;
+  gap: 10px;
+  padding: 14px 10px;
+  width: fit-content;
+  height: 100%;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 78px;
+  padding: 4px 2px;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid transparent;
+  transition: background-color 0.1s ease;
+}
+
+.desktop-icon:hover {
+  background-color: rgba(49, 106, 197, 0.25);
+  border: 1px dotted rgba(255, 255, 255, 0.45);
+}
+
+.desktop-icon.selected {
+  background-color: rgba(49, 106, 197, 0.55);
+  border: 1px dotted #ffffff;
+}
+
+.desktop-icon .icon-img {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+  filter: drop-shadow(1px 2px 3px rgba(0,0,0,0.45));
+}
+
+.desktop-icon .icon-label {
+  font-size: 11px;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 2px #000, 0 0 3px #000, 1px 1px 0 #000;
+  line-height: 1.25;
+  padding: 1px 3px;
+  border-radius: 2px;
+  word-break: break-word;
+  max-height: 28px;
+  overflow: hidden;
+}
+
+.desktop-icon.selected .icon-label {
+  background-color: var(--xp-select-blue);
+  color: #FFFFFF;
+  text-shadow: none;
+}
+
+/* Drag Selection Box (Rubber-band marquee) */
+#selection-box {
+  position: absolute;
+  display: none;
+  border: 1px solid #316ac5;
+  background-color: rgba(49, 106, 197, 0.28);
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Desktop Context Menu (Right Click) */
+.xp-context-menu {
+  position: absolute;
+  display: none;
+  min-width: 160px;
+  background: #FFFFFF;
+  border: 1px solid #716F64;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.35);
+  padding: 2px;
+  z-index: 99999;
+  font-size: 11px;
+}
+
+.xp-context-item {
+  display: flex;
+  align-items: center;
+  padding: 4px 22px 4px 10px;
+  cursor: pointer;
+  color: #000000;
+}
+
+.xp-context-item:hover {
+  background-color: var(--xp-select-blue);
+  color: #FFFFFF;
+}
+
+.xp-context-separator {
+  height: 1px;
+  background-color: #D3D0C5;
+  margin: 3px 1px;
+}
