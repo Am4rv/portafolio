@@ -18,8 +18,35 @@
   <link rel="stylesheet" href="css/xp-window.css">
   <link rel="stylesheet" href="css/xp-taskbar.css">
   <link rel="stylesheet" href="css/xp-apps.css">
-</head>
 <body>
+
+  <!-- Windows XP Classic Bootscreen -->
+  <div id="xp-boot-screen" title="Haz clic para iniciar el sistema">
+    <div class="boot-content">
+      <div class="boot-logo-area">
+        <div class="boot-ms-text">Microsoft</div>
+        <div class="boot-main-logo">
+          <span style="display: flex; align-items: center;" data-render-icon="start-flag" data-icon-size="44"></span>
+          <span class="boot-windows-text">Windows</span>
+          <span class="boot-xp-text">xp</span>
+        </div>
+        <div class="boot-edition-text">Professional</div>
+      </div>
+
+      <!-- Authentic 3-block crawling loader -->
+      <div class="boot-loader-track">
+        <div class="boot-loader-blocks">
+          <div class="boot-block"></div>
+          <div class="boot-block"></div>
+          <div class="boot-block"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="boot-footer">
+      <span>Haz clic o presiona cualquier tecla para omitir</span>
+    </div>
+  </div>
 
   <!-- CRT Monitor Scanlines Effect (Toggled in Display Properties) -->
   <div class="scanlines-overlay"></div>
@@ -85,7 +112,7 @@
          ====================================================================== -->
 
     <!-- 1. MI PC / SOBRE MÍ (System Properties Dialog) -->
-    <div id="win-about" class="xp-window" data-title="Mi PC - Propiedades del Sistema" data-icon="my-computer" style="display: none;">
+    <div id="win-about" class="xp-window" data-title="Mi PC - Propiedades del Sistema" data-win-icon="my-computer" style="display: none;">
       <div class="xp-titlebar">
         <div class="xp-titlebar-left">
           <div class="xp-titlebar-icon"></div>
@@ -97,129 +124,10 @@
           <button class="xp-btn-ctrl xp-btn-close" title="Cerrar">✕</button>
         </div>
       </div>
-      <div class="xp-window-body gray-bg">
-        <div class="xp-tabs-header">
-          <button class="xp-tab-btn active" data-target-tab="tab-general">General</button>
-          <button class="xp-tab-btn" data-target-tab="tab-profile">Perfil Profesional</button>
-          <button class="xp-tab-btn" data-target-tab="tab-education">Educación</button>
-          <button class="xp-tab-btn" data-target-tab="tab-certs">Certificaciones</button>
-        </div>
-
-        <!-- Tab 1: General -->
-        <div id="tab-general" class="xp-tab-content active">
-          <div class="sys-prop-banner">
-            <div class="sys-pc-illustration" data-icon="my-computer" data-icon-size="64"></div>
-            <div class="sys-specs-grid">
-              <span class="sys-label">Sistema:</span>
-              <span class="sys-val">AmaruOS XP Professional v2026</span>
-
-              <span class="sys-label">Desarrollador:</span>
-              <span class="sys-val"><strong>Amaru Ríos Figueroa</strong></span>
-
-              <span class="sys-label">Especialidad:</span>
-              <span class="sys-val">Software Engineer / Full-Stack</span>
-
-              <span class="sys-label">Ubicación:</span>
-              <span class="sys-val">Santiago, Chile 🇨🇱</span>
-
-              <span class="sys-label">Universidad:</span>
-              <span class="sys-val">UTEM (Ing. en Informática)</span>
-
-              <span class="sys-label">Stack Principal:</span>
-              <span class="sys-val">Python (FastAPI, Flask) | React | MongoDB | AWS</span>
-            </div>
-          </div>
-
-          <fieldset class="xp-groupbox">
-            <legend>Contacto Rápido</legend>
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <a href="https://www.linkedin.com/in/amaru-rios-figueroa-02a391319/" target="_blank" class="xp-button">
-                LinkedIn ↗
-              </a>
-              <a href="https://github.com/Am4rv" target="_blank" class="xp-button">
-                GitHub ↗
-              </a>
-              <a href="mailto:amaruriosfigueroa@gmail.com" class="xp-button">
-                Enviar Correo
-              </a>
-              <a href="https://wa.me/56949254442" target="_blank" class="xp-button primary">
-                WhatsApp (+56 9 49254442)
-              </a>
-            </div>
-          </fieldset>
-
-          <div style="display: flex; justify-content: flex-end; gap: 6px; margin-top: 10px;">
-            <button class="xp-button primary" onclick="window.windowManager.openWindow('win-projects')">Ver Experiencia</button>
-            <button class="xp-button" onclick="window.windowManager.closeWindow('win-about')">Aceptar</button>
-          </div>
-        </div>
-
-        <!-- Tab 2: Perfil Profesional -->
-        <div id="tab-profile" class="xp-tab-content">
-          <fieldset class="xp-groupbox">
-            <legend>Descripción Profesional</legend>
-            <p style="line-height: 1.6; font-size: 11px; color: #222;">
-              Software Engineer con sólida experiencia en desarrollo <strong>Full Stack</strong>. Especializado en la construcción de <strong>APIs robustas</strong> (Python/Flask, FastAPI), optimización de bases de datos (MongoDB, MySQL, PostgreSQL) y desarrollo de interfaces de usuario modernas.
-            </p>
-            <p style="margin-top: 8px; line-height: 1.6; font-size: 11px; color: #222;">
-              Orientado a la resolución técnica de problemas complejos, validación de integraciones y rendimiento de sistemas, garantizando la estabilidad del software y adaptándome rápidamente a nuevas arquitecturas y herramientas cloud.
-            </p>
-          </fieldset>
-
-          <fieldset class="xp-groupbox">
-            <legend>Puntos Clave de Enfoque</legend>
-            <ul style="padding-left: 18px; line-height: 1.5; font-size: 11px;">
-              <li>Arquitectura de APIs REST escalables y seguras con Python (Flask / FastAPI).</li>
-              <li>Modelado, limpieza, transformación (ETL) y optimización de bases de datos relacionales y NoSQL.</li>
-              <li>Frontend dinámico y responsivo con React, TypeScript, JavaScript y Bootstrap.</li>
-              <li>Cumplimiento de estándares internacionales de seguridad (ISO 27001 / ISO 27701).</li>
-            </ul>
-          </fieldset>
-        </div>
-
-        <!-- Tab 3: Educación -->
-        <div id="tab-education" class="xp-tab-content">
-          <fieldset class="xp-groupbox">
-            <legend>Título Universitario</legend>
-            <div style="font-size: 12px; font-weight: bold; color: #003399; margin-bottom: 4px;">
-              Ingeniería en Informática
-            </div>
-            <div style="font-size: 11px; color: #333; margin-bottom: 6px;">
-              <strong>Universidad Tecnológica Metropolitana (UTEM)</strong>
-            </div>
-            <div style="font-size: 11px; color: #666; margin-bottom: 10px;">
-              Marzo 2020 – Enero 2025
-            </div>
-            <p style="font-size: 11px; line-height: 1.5; color: #333;">
-              Formación integral en ciencias de la computación, desarrollo de software, algoritmos, estructuras de datos, redes, seguridad informática, gestión ágil de proyectos y bases de datos relacionales y no relacionales.
-            </p>
-          </fieldset>
-        </div>
-
-        <!-- Tab 4: Certificaciones -->
-        <div id="tab-certs" class="xp-tab-content">
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <div style="border: 1px solid #D1D7E0; padding: 8px; border-radius: 4px; background: #FFF;">
-              <div style="font-weight: bold; color: #003399;">AWS Academy Graduate - Introducción a la nube</div>
-              <div style="font-size: 10px; color: #666; margin-top: 2px;">Conceptos básicos de AWS para entornos escalables y arquitectura en la nube.</div>
-            </div>
-
-            <div style="border: 1px solid #D1D7E0; padding: 8px; border-radius: 4px; background: #FFF;">
-              <div style="font-weight: bold; color: #003399;">ISO 27001 - Versión 2022</div>
-              <div style="font-size: 10px; color: #666; margin-top: 2px;">Sistemas de Gestión de Seguridad de la Información (SGSI).</div>
-            </div>
-
-            <div style="border: 1px solid #D1D7E0; padding: 8px; border-radius: 4px; background: #FFF;">
-              <div style="font-weight: bold; color: #003399;">Taller Introducción a la ISO 27001</div>
-              <div style="font-size: 10px; color: #666; margin-top: 2px;">Principios fundamentales y controles de ciberseguridad.</div>
-            </div>
-
-            <div style="border: 1px solid #D1D7E0; padding: 8px; border-radius: 4px; background: #FFF;">
-              <div style="font-weight: bold; color: #003399;">Concientización de seguridad #2 & Gestión de Riesgos 2</div>
-              <div style="font-size: 10px; color: #666; margin-top: 2px;">Mitigación de vulnerabilidades y gestión integral de riesgos tecnológicos.</div>
-            </div>
-          </div>
-        </div>
+      <!-- Contenido generado dinámicamente por js/data/portfolio-render.js -->
+      <!-- Edita js/data/portfolio-data.js para modificar esta ventana   -->
+      <div class="xp-window-body gray-bg" id="win-about-body">
+        <!-- El renderer inyecta aquí: tabs header + tab-general, tab-profile, tab-education, tab-certs -->
       </div>
       <div class="xp-statusbar">
         <div class="xp-status-pane">Estado: Listo</div>
@@ -228,7 +136,7 @@
     </div>
 
     <!-- 2. MIS DOCUMENTOS / EXPERIENCIA Y PROYECTOS (Windows Explorer) -->
-    <div id="win-projects" class="xp-window" data-title="Mis Documentos - Experiencia y Proyectos" data-icon="my-documents" style="display: none;">
+    <div id="win-projects" class="xp-window" data-title="Mis Documentos - Experiencia y Proyectos" data-win-icon="my-documents" style="display: none;">
       <div class="xp-titlebar">
         <div class="xp-titlebar-left">
           <div class="xp-titlebar-icon"></div>
@@ -303,74 +211,10 @@
             </div>
           </div>
 
-          <!-- Explorer Content: Work Experience Cards -->
+          <!-- Contenido generado dinámicamente por js/data/portfolio-render.js -->
+          <!-- Edita js/data/portfolio-data.js para añadir/modificar experiencia -->
           <div class="explorer-content">
-            <!-- Experience Item 1 -->
-            <div class="project-card-xp">
-              <div class="project-header">
-                <span class="project-title">Desarrollo e Innovación — Eniax Care</span>
-                <span class="project-badge">Full-Stack Developer</span>
-              </div>
-              <div class="project-role-dates">
-                Desarrollador Full-Stack | Agosto 2025 – Julio 2026
-              </div>
-              <ul class="project-desc-list">
-                <li>Desarrollo de nuevas herramientas internas y plataformas de software orientadas a la optimización de procesos operativos y la atención digital integral de pacientes.</li>
-                <li>Diseño e implementación de soluciones <strong>Full Stack</strong> completas, participando activamente tanto en la arquitectura de backend como en el frontend interactivo.</li>
-                <li>Construcción y mantenimiento continuo de <strong>APIs y microservicios</strong> de alta disponibilidad utilizando <strong>Python y Flask</strong>.</li>
-                <li>Desarrollo de interfaces de usuario web dinámicas y responsivas con JavaScript, HTML5, CSS3 y Bootstrap.</li>
-                <li>Gestión, modelado y optimización de bases de datos <strong>MongoDB</strong> y <strong>MySQL</strong>, incluyendo tareas de limpieza, transformación de datos (ETL) y análisis.</li>
-                <li>Implementación de mejoras en seguridad, robustecimiento y validación estricta de datos en aplicaciones internas.</li>
-              </ul>
-              <div class="project-tags">
-                <span class="tag-pill">Python</span>
-                <span class="tag-pill">Flask</span>
-                <span class="tag-pill">MongoDB</span>
-                <span class="tag-pill">MySQL</span>
-                <span class="tag-pill">JavaScript</span>
-                <span class="tag-pill">HTML/CSS</span>
-                <span class="tag-pill">Bootstrap</span>
-                <span class="tag-pill">Seguridad</span>
-              </div>
-            </div>
-
-            <!-- Experience Item 2 -->
-            <div class="project-card-xp">
-              <div class="project-header">
-                <span class="project-title">Departamento de Pregrado — Universidad de Chile</span>
-                <span class="project-badge">Analista Programador</span>
-              </div>
-              <div class="project-role-dates">
-                Analista Programador | Noviembre 2024 – Enero 2025
-              </div>
-              <ul class="project-desc-list">
-                <li>Desarrolló el <strong>Sistema de Ingresos Especiales (SIE)</strong>, plataforma crucial que automatiza integralmente el proceso de selección y admisión de estudiantes a la universidad por vías de ingreso especiales.</li>
-                <li>Implementó el backend completo del <strong>Sistema AFE</strong> (Actividades Finales de Egreso) empleando <strong>Python, FastAPI y MongoDB</strong>, optimizando la gestión de actividades para académicos, estudiantes y personal administrativo.</li>
-                <li>Desplegó la API REST asegurando que el equipo de Front-End pudiera consumir endpoints de manera eficiente, garantizando una integración fluida y una mejor experiencia de usuario.</li>
-              </ul>
-              <div class="project-tags">
-                <span class="tag-pill">Python</span>
-                <span class="tag-pill">FastAPI</span>
-                <span class="tag-pill">MongoDB</span>
-                <span class="tag-pill">APIs REST</span>
-                <span class="tag-pill">Postman</span>
-                <span class="tag-pill">U. de Chile</span>
-              </div>
-            </div>
-
-            <!-- Experience Item 3 / Proyectos Personales -->
-            <div class="project-card-xp">
-              <div class="project-header">
-                <span class="project-title">Proyectos de Código Abierto & GitHub</span>
-                <span class="project-badge">github.com/Am4rv</span>
-              </div>
-              <p style="font-size: 11px; line-height: 1.5; color: #333; margin-bottom: 8px;">
-                Repositorios con implementaciones de backend escalables, arquitecturas basadas en microservicios, pruebas automatizadas, contenedores Docker y prototipos con Flutter y Dart.
-              </p>
-              <a href="https://github.com/Am4rv" target="_blank" class="xp-button">
-                Explorar repositorios en GitHub ↗
-              </a>
-            </div>
+            <!-- El renderer inyecta aquí las tarjetas de experiencia desde PORTFOLIO_DATA.experience -->
           </div>
         </div>
       </div>
@@ -381,7 +225,7 @@
     </div>
 
     <!-- 3. HABILIDADES.EXE (Skills Manager) -->
-    <div id="win-skills" class="xp-window" data-title="Habilidades.exe - Stack Tecnológico" data-icon="skills" style="display: none;">
+    <div id="win-skills" class="xp-window" data-title="Habilidades.exe - Stack Tecnológico" data-win-icon="skills" style="display: none;">
       <div class="xp-titlebar">
         <div class="xp-titlebar-left">
           <div class="xp-titlebar-icon"></div>
@@ -393,115 +237,11 @@
           <button class="xp-btn-ctrl xp-btn-close">✕</button>
         </div>
       </div>
+      <!-- Contenido generado dinámicamente por js/data/portfolio-render.js -->
+      <!-- Edita js/data/portfolio-data.js para añadir/modificar habilidades -->
       <div class="xp-window-body gray-bg">
         <div class="skills-grid">
-          <!-- Category: Frontend -->
-          <div class="skill-category-box">
-            <div class="skill-cat-title">
-              <span>🎨 Frontend</span>
-            </div>
-            <div class="skill-meter-row">
-              <span>React</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 88%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>JavaScript (ES6+)</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 92%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>TypeScript</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 82%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>HTML5 & CSS3</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 95%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>Bootstrap</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 90%;"></div></div>
-            </div>
-          </div>
-
-          <!-- Category: Backend -->
-          <div class="skill-category-box">
-            <div class="skill-cat-title">
-              <span>⚙️ Backend</span>
-            </div>
-            <div class="skill-meter-row">
-              <span>Python</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 95%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>FastAPI</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 90%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>Flask</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 92%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>APIs RESTful</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 94%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>Postman / Tests</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 88%;"></div></div>
-            </div>
-          </div>
-
-          <!-- Category: Databases & Cloud -->
-          <div class="skill-category-box">
-            <div class="skill-cat-title">
-              <span>☁️ Bases de Datos & Cloud</span>
-            </div>
-            <div class="skill-meter-row">
-              <span>MongoDB</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 90%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>MySQL</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 88%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>PostgreSQL</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 85%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>AWS Cloud</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 82%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>Docker & GCP</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 80%;"></div></div>
-            </div>
-          </div>
-
-          <!-- Category: Others & Standards -->
-          <div class="skill-category-box">
-            <div class="skill-cat-title">
-              <span>🛡️ Estándares & Otros</span>
-            </div>
-            <div class="skill-meter-row">
-              <span>ISO 27001 / 27701</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 88%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>Git & GitHub</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 92%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>Scrum & Agile</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 89%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>C / C++</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 78%;"></div></div>
-            </div>
-            <div class="skill-meter-row">
-              <span>Dart & Flutter</span>
-              <div class="skill-meter-bar"><div class="skill-meter-fill" style="width: 75%;"></div></div>
-            </div>
-          </div>
+          <!-- El renderer inyecta aquí las categorías desde PORTFOLIO_DATA.skills -->
         </div>
       </div>
       <div class="xp-statusbar">
@@ -511,7 +251,7 @@
     </div>
 
     <!-- 4. NOTEPAD / CURRICULUM.TXT -->
-    <div id="win-notepad" class="xp-window" data-title="Curriculum.txt - Bloc de notas" data-icon="notepad" style="display: none;">
+    <div id="win-notepad" class="xp-window" data-title="Curriculum.txt - Bloc de notas" data-win-icon="notepad" style="display: none;">
       <div class="xp-titlebar">
         <div class="xp-titlebar-left">
           <div class="xp-titlebar-icon"></div>
@@ -610,7 +350,7 @@ CERTIFICACIONES
     </div>
 
     <!-- 5. MSN MESSENGER 7.0 -->
-    <div id="win-msn" class="xp-window" data-title="MSN Messenger - Amaru Ríos" data-icon="msn" style="display: none;">
+    <div id="win-msn" class="xp-window" data-title="MSN Messenger - Amaru Ríos" data-win-icon="msn" style="display: none;">
       <div class="xp-titlebar">
         <div class="xp-titlebar-left">
           <div class="xp-titlebar-icon"></div>
@@ -625,7 +365,7 @@ CERTIFICACIONES
       <div class="xp-window-body">
         <div class="msn-container">
           <div class="msn-header-user">
-            <div class="msn-avatar-box" data-icon="user-avatar" data-icon-size="34"></div>
+            <div class="msn-avatar-box" data-render-icon="user-avatar" data-icon-size="34"></div>
             <div>
               <div style="font-weight: bold; font-size: 12px;">Amaru Ríos Figueroa</div>
               <div style="font-size: 10px; opacity: 0.9;">&lt;amaruriosfigueroa@gmail.com&gt;</div>
@@ -660,7 +400,7 @@ CERTIFICACIONES
     </div>
 
     <!-- 6. TERMINAL / CMD.EXE -->
-    <div id="win-cmd" class="xp-window" data-title="Símbolo del sistema" data-icon="cmd" style="display: none;">
+    <div id="win-cmd" class="xp-window" data-title="Símbolo del sistema" data-win-icon="cmd" style="display: none;">
       <div class="xp-titlebar">
         <div class="xp-titlebar-left">
           <div class="xp-titlebar-icon"></div>
@@ -689,40 +429,9 @@ Escribe 'help' para ver los comandos interactivos disponibles.
       </div>
     </div>
 
-    <!-- 7. WINDOWS MEDIA PLAYER -->
-    <div id="win-wmp" class="xp-window" data-title="Windows Media Player" data-icon="media-player" style="display: none;">
-      <div class="xp-titlebar">
-        <div class="xp-titlebar-left">
-          <div class="xp-titlebar-icon"></div>
-          <span class="xp-titlebar-title">Windows Media Player</span>
-        </div>
-        <div class="xp-titlebar-buttons">
-          <button class="xp-btn-ctrl xp-btn-min">_</button>
-          <button class="xp-btn-ctrl xp-btn-max">□</button>
-          <button class="xp-btn-ctrl xp-btn-close">✕</button>
-        </div>
-      </div>
-      <div class="xp-window-body">
-        <div class="wmp-container">
-          <div class="wmp-visualizer">
-            <canvas id="wmp-canvas" width="480" height="230"></canvas>
-          </div>
-          <div class="wmp-controls-bar">
-            <div class="wmp-track-info">
-              <span id="wmp-title" class="wmp-track-title">Amaru Lo-Fi Synth Journey</span>
-              <span class="wmp-track-artist">Procedural Web Audio Engine</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <button id="wmp-play-btn" class="wmp-btn-round" title="Reproducir / Pausar">▶</button>
-              <button id="wmp-next-btn" class="wmp-btn-round" style="width: 26px; height: 26px; font-size: 10px;" title="Siguiente Pista">⏭</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- 8. MS PAINT -->
-    <div id="win-paint" class="xp-window" data-title="Paint.exe" data-icon="paint" style="display: none;">
+    <div id="win-paint" class="xp-window" data-title="Paint.exe" data-win-icon="paint" style="display: none;">
       <div class="xp-titlebar">
         <div class="xp-titlebar-left">
           <div class="xp-titlebar-icon"></div>
@@ -760,7 +469,7 @@ Escribe 'help' para ver los comandos interactivos disponibles.
     </div>
 
     <!-- 9. BUSCAMINAS (Minesweeper) -->
-    <div id="win-minesweeper" class="xp-window" data-title="Buscaminas" data-icon="minesweeper" style="display: none;">
+    <div id="win-minesweeper" class="xp-window" data-title="Buscaminas" data-win-icon="minesweeper" style="display: none;">
       <div class="xp-titlebar">
         <div class="xp-titlebar-left">
           <div class="xp-titlebar-icon"></div>
@@ -784,7 +493,7 @@ Escribe 'help' para ver los comandos interactivos disponibles.
     </div>
 
     <!-- 10. PROPIEDADES DE PANTALLA (Display Properties / Control Panel) -->
-    <div id="win-display" class="xp-window" data-title="Propiedades de Pantalla" data-icon="control-panel" style="display: none;">
+    <div id="win-display" class="xp-window" data-title="Propiedades de Pantalla" data-win-icon="control-panel" style="display: none;">
       <div class="xp-titlebar">
         <div class="xp-titlebar-left">
           <div class="xp-titlebar-icon"></div>
@@ -831,7 +540,7 @@ Escribe 'help' para ver los comandos interactivos disponibles.
     </div>
 
     <!-- 11. PAPELERA DE RECICLAJE -->
-    <div id="win-recycle" class="xp-window" data-title="Papelera de reciclaje" data-icon="recycle-bin" style="display: none;">
+    <div id="win-recycle" class="xp-window" data-title="Papelera de reciclaje" data-win-icon="recycle-bin" style="display: none;">
       <div class="xp-titlebar">
         <div class="xp-titlebar-left">
           <div class="xp-titlebar-icon"></div>
@@ -882,7 +591,7 @@ Escribe 'help' para ver los comandos interactivos disponibles.
        ======================================================================== -->
   <div id="start-menu">
     <div class="start-menu-header">
-      <div class="start-avatar" data-icon="user-avatar" data-icon-size="36"></div>
+      <div class="start-avatar" data-render-icon="user-avatar" data-icon-size="36"></div>
       <div class="start-user-info">
         <span class="start-user-name">Amaru Ríos Figueroa</span>
         <span class="start-user-title">Software Engineer / Full-Stack</span>
@@ -892,7 +601,7 @@ Escribe 'help' para ver los comandos interactivos disponibles.
       <!-- Left Column (Frequent Programs) -->
       <div class="start-col-left">
         <div class="start-item" data-launch="win-about">
-          <div class="start-item-icon" data-icon="my-computer" data-icon-size="26"></div>
+          <div class="start-item-icon" data-render-icon="my-computer" data-icon-size="26"></div>
           <div class="start-item-text">
             <span class="start-item-name">Mi PC (Sobre Mí)</span>
             <span class="start-item-desc">Perfil y Especificaciones</span>
@@ -900,7 +609,7 @@ Escribe 'help' para ver los comandos interactivos disponibles.
         </div>
 
         <div class="start-item" data-launch="win-projects">
-          <div class="start-item-icon" data-icon="my-documents" data-icon-size="26"></div>
+          <div class="start-item-icon" data-render-icon="my-documents" data-icon-size="26"></div>
           <div class="start-item-text">
             <span class="start-item-name">Mis Documentos</span>
             <span class="start-item-desc">Experiencia y Proyectos</span>
@@ -908,7 +617,7 @@ Escribe 'help' para ver los comandos interactivos disponibles.
         </div>
 
         <div class="start-item" data-launch="win-skills">
-          <div class="start-item-icon" data-icon="skills" data-icon-size="26"></div>
+          <div class="start-item-icon" data-render-icon="skills" data-icon-size="26"></div>
           <div class="start-item-text">
             <span class="start-item-name">Habilidades.exe</span>
             <span class="start-item-desc">Stack Tecnológico</span>
@@ -916,7 +625,7 @@ Escribe 'help' para ver los comandos interactivos disponibles.
         </div>
 
         <div class="start-item" data-launch="win-notepad">
-          <div class="start-item-icon" data-icon="notepad" data-icon-size="26"></div>
+          <div class="start-item-icon" data-render-icon="notepad" data-icon-size="26"></div>
           <div class="start-item-text">
             <span class="start-item-name">Bloc de notas</span>
             <span class="start-item-desc">Curriculum Vitae</span>
@@ -924,7 +633,7 @@ Escribe 'help' para ver los comandos interactivos disponibles.
         </div>
 
         <div class="start-item" data-launch="win-msn">
-          <div class="start-item-icon" data-icon="msn" data-icon-size="26"></div>
+          <div class="start-item-icon" data-render-icon="msn" data-icon-size="26"></div>
           <div class="start-item-text">
             <span class="start-item-name">MSN Messenger</span>
             <span class="start-item-desc">Chat & Contacto Directo</span>
@@ -932,7 +641,7 @@ Escribe 'help' para ver los comandos interactivos disponibles.
         </div>
 
         <div class="start-item" data-launch="win-cmd">
-          <div class="start-item-icon" data-icon="cmd" data-icon-size="26"></div>
+          <div class="start-item-icon" data-render-icon="cmd" data-icon-size="26"></div>
           <div class="start-item-text">
             <span class="start-item-name">Símbolo del sistema</span>
             <span class="start-item-desc">Terminal cmd.exe</span>
@@ -941,22 +650,16 @@ Escribe 'help' para ver los comandos interactivos disponibles.
 
         <div class="start-divider"></div>
 
-        <div class="start-item" data-launch="win-wmp">
-          <div class="start-item-icon" data-icon="media-player" data-icon-size="24"></div>
-          <div class="start-item-text">
-            <span class="start-item-name">Windows Media Player</span>
-          </div>
-        </div>
 
         <div class="start-item" data-launch="win-paint">
-          <div class="start-item-icon" data-icon="paint" data-icon-size="24"></div>
+          <div class="start-item-icon" data-render-icon="paint" data-icon-size="24"></div>
           <div class="start-item-text">
             <span class="start-item-name">Paint</span>
           </div>
         </div>
 
         <div class="start-item" data-launch="win-minesweeper">
-          <div class="start-item-icon" data-icon="minesweeper" data-icon-size="24"></div>
+          <div class="start-item-icon" data-render-icon="minesweeper" data-icon-size="24"></div>
           <div class="start-item-text">
             <span class="start-item-name">Buscaminas</span>
           </div>
@@ -966,14 +669,14 @@ Escribe 'help' para ver los comandos interactivos disponibles.
       <!-- Right Column (System Shortcuts) -->
       <div class="start-col-right">
         <a class="start-item" href="https://github.com/Am4rv" target="_blank">
-          <div class="start-item-icon" data-icon="github" data-icon-size="20"></div>
+          <div class="start-item-icon" data-render-icon="github" data-icon-size="20"></div>
           <div class="start-item-text">
             <span class="start-item-name bold">GitHub (Am4rv) ↗</span>
           </div>
         </a>
 
         <a class="start-item" href="https://www.linkedin.com/in/amaru-rios-figueroa-02a391319/" target="_blank">
-          <div class="start-item-icon" data-icon="linkedin" data-icon-size="20"></div>
+          <div class="start-item-icon" data-render-icon="linkedin" data-icon-size="20"></div>
           <div class="start-item-text">
             <span class="start-item-name bold">LinkedIn ↗</span>
           </div>
@@ -982,14 +685,14 @@ Escribe 'help' para ver los comandos interactivos disponibles.
         <div class="start-divider"></div>
 
         <div class="start-item" data-launch="win-display">
-          <div class="start-item-icon" data-icon="control-panel" data-icon-size="20"></div>
+          <div class="start-item-icon" data-render-icon="control-panel" data-icon-size="20"></div>
           <div class="start-item-text">
             <span class="start-item-name">Panel de Control</span>
           </div>
         </div>
 
         <div class="start-item" data-launch="win-recycle">
-          <div class="start-item-icon" data-icon="recycle-bin" data-icon-size="20"></div>
+          <div class="start-item-icon" data-render-icon="recycle-bin" data-icon-size="20"></div>
           <div class="start-item-text">
             <span class="start-item-name">Papelera de reciclaje</span>
           </div>
@@ -1031,7 +734,7 @@ Escribe 'help' para ver los comandos interactivos disponibles.
        ======================================================================== -->
   <div id="xp-taskbar">
     <button id="start-button">
-      <span style="display: flex; align-items: center;" data-icon="start-flag" data-icon-size="20"></span>
+      <span style="display: flex; align-items: center;" data-render-icon="start-flag" data-icon-size="20"></span>
       <span class="start-text">inicio</span>
     </button>
 
@@ -1041,8 +744,8 @@ Escribe 'help' para ver los comandos interactivos disponibles.
 
     <div id="system-tray">
       <div class="tray-icons">
-        <button id="tray-sound-btn" class="tray-icon-btn" title="Sonido (Clic para silenciar)" data-icon="sound" data-icon-size="16"></button>
-        <span title="Seguridad activa (ISO 27001)" style="cursor: pointer;" onclick="window.windowManager.openWindow('win-about')" data-icon="shield" data-icon-size="16"></span>
+        <button id="tray-sound-btn" class="tray-icon-btn" title="Sonido (Clic para silenciar)" data-render-icon="sound" data-icon-size="16"></button>
+        <span title="Seguridad activa (ISO 27001)" style="cursor: pointer;" onclick="window.windowManager.openWindow('win-about')" data-render-icon="shield" data-icon-size="16"></span>
       </div>
       <div id="tray-clock" title="Hora actual">12:00 PM</div>
     </div>
@@ -1095,12 +798,15 @@ Escribe 'help' para ver los comandos interactivos disponibles.
     <button id="btn-turn-on" class="xp-button primary" style="font-size: 14px; padding: 8px 24px;">Encender de nuevo</button>
   </div>
 
+  <!-- ── Datos del portafolio (edita aquí para actualizar el contenido) ── -->
+  <script src="js/data/portfolio-data.js"></script>
+  <script src="js/data/portfolio-render.js"></script>
+
   <!-- Application Logic Scripts -->
   <script src="js/window-manager.js"></script>
   <script src="js/apps/cmd.js"></script>
   <script src="js/apps/minesweeper.js"></script>
   <script src="js/apps/paint.js"></script>
-  <script src="js/apps/media-player.js"></script>
   <script src="js/apps/msn.js"></script>
   <script src="js/apps/notepad.js"></script>
   <script src="js/apps/control-panel.js"></script>

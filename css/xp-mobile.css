@@ -1,0 +1,501 @@
+/* ==========================================================================
+   AmaruOS Mobile — Responsive Layout para pantallas < 768px
+   Misma estética Windows XP, adaptada para scroll vertical en celular.
+   ========================================================================== */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MOBILE SHELL — ocultar desktop XP, mostrar vista mobile
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+
+  /* Ocultar todo el desktop de escritorio */
+  #xp-desktop,
+  #start-menu,
+  #xp-balloon,
+  #selection-box {
+    display: none !important;
+  }
+
+  /* Mostrar el shell mobile */
+  #mobile-shell {
+    display: flex !important;
+  }
+
+  /* Taskbar mobile reemplaza la de escritorio */
+  #xp-taskbar {
+    height: 44px;
+    padding: 0 8px;
+    justify-content: space-between;
+  }
+
+  #start-button {
+    border-radius: 8px;
+    padding: 0 12px;
+    font-size: 13px;
+    height: 32px;
+  }
+
+  #start-button .start-text {
+    font-size: 13px;
+  }
+
+  #taskbar-windows {
+    display: none; /* Sin ventanas abiertas en mobile */
+  }
+
+  #system-tray {
+    gap: 8px;
+  }
+
+  #tray-clock {
+    font-size: 11px;
+  }
+
+  /* Ajustar bottom para el shell */
+  :root {
+    --xp-taskbar-height: 44px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MOBILE SHELL — contenedor principal
+   ────────────────────────────────────────────────────────────────────────── */
+#mobile-shell {
+  display: none; /* oculto en desktop */
+  flex-direction: column;
+  position: fixed;
+  inset: 0;
+  bottom: var(--xp-taskbar-height);
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: linear-gradient(to bottom,
+    #136ac7 0%,
+    #2c88e5 25%,
+    #5aa5f2 45%,
+    #93c5f9 65%,
+    #bfe0fd 82%,
+    #deefff 88%,
+    #b3db6a 90%,
+    #69af22 96%,
+    #3f880f 100%
+  );
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MOBILE HEADER — banner de perfil
+   ────────────────────────────────────────────────────────────────────────── */
+.mobile-header {
+  background: var(--xp-win-title-active);
+  padding: 20px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.mobile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4a9eed 0%, #0058ee 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  border: 3px solid rgba(255,255,255,0.6);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+
+.mobile-header-info h1 {
+  color: #fff;
+  font-family: var(--font-title);
+  font-size: 17px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px #0a246a;
+  margin-bottom: 3px;
+}
+
+.mobile-header-info p {
+  color: rgba(255,255,255,0.88);
+  font-size: 12px;
+  text-shadow: 1px 1px 1px #0a246a;
+}
+
+.mobile-contact-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.mobile-contact-bar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 11px;
+  padding: 5px 12px;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+}
+
+.mobile-contact-bar a:hover,
+.mobile-contact-bar a:active {
+  background: rgba(255,255,255,0.32);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MOBILE NAV — tabs de navegación horizontal
+   ────────────────────────────────────────────────────────────────────────── */
+.mobile-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #245edb 100%);
+  border-bottom: 2px solid #1941a5;
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.mobile-nav::-webkit-scrollbar { display: none; }
+
+.mobile-nav-btn {
+  flex-shrink: 0;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,0.75);
+  font-family: var(--font-tahoma);
+  font-size: 11px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.mobile-nav-btn.active {
+  color: #fff;
+  border-bottom-color: #FFD700;
+  font-weight: bold;
+}
+
+.mobile-nav-btn:active {
+  background: rgba(255,255,255,0.1);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MOBILE SECTIONS — paneles de contenido
+   ────────────────────────────────────────────────────────────────────────── */
+.mobile-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Cada sección es una "ventana" XP simplificada */
+.mobile-panel {
+  background: var(--xp-win-bg);
+  border: 2px solid var(--xp-win-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.mobile-panel-title {
+  background: var(--xp-win-title-active);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-family: var(--font-title);
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #0a246a;
+}
+
+.mobile-panel-body {
+  padding: 12px;
+  background: #fff;
+}
+
+/* Perfil bio */
+.mobile-bio {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #222;
+}
+
+.mobile-bio + .mobile-bio {
+  margin-top: 8px;
+}
+
+/* Key points list */
+.mobile-key-points {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mobile-key-points li {
+  font-size: 11px;
+  color: #333;
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.mobile-key-points li::before {
+  content: '▶';
+  position: absolute;
+  left: 0;
+  color: #0058ee;
+  font-size: 8px;
+  top: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MOBILE EXPERIENCE CARDS
+   ────────────────────────────────────────────────────────────────────────── */
+.mobile-exp-card {
+  border: 1px solid #D1D7E0;
+  border-radius: 6px;
+  padding: 12px;
+  background: #fff;
+  margin-bottom: 10px;
+}
+
+.mobile-exp-card:last-child { margin-bottom: 0; }
+
+.mobile-exp-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.mobile-exp-company {
+  font-size: 12px;
+  font-weight: bold;
+  color: #003399;
+  flex: 1;
+  min-width: 0;
+}
+
+.mobile-exp-badge {
+  background: #316ac5;
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.mobile-exp-dates {
+  font-size: 10px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.mobile-exp-bullets {
+  list-style: disc;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-exp-bullets li {
+  font-size: 11px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.mobile-exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MOBILE EDUCATION & CERTS
+   ────────────────────────────────────────────────────────────────────────── */
+.mobile-edu-item {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-edu-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.mobile-edu-degree {
+  font-size: 13px;
+  font-weight: bold;
+  color: #003399;
+  margin-bottom: 2px;
+}
+
+.mobile-edu-institution {
+  font-size: 11px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.mobile-edu-period {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.mobile-edu-desc {
+  font-size: 11px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.mobile-cert-item {
+  padding: 8px 10px;
+  border: 1px solid #D1D7E0;
+  border-radius: 4px;
+  background: #fafafa;
+  margin-bottom: 6px;
+}
+
+.mobile-cert-item:last-child { margin-bottom: 0; }
+
+.mobile-cert-name {
+  font-size: 11px;
+  font-weight: bold;
+  color: #003399;
+  margin-bottom: 2px;
+}
+
+.mobile-cert-desc {
+  font-size: 10px;
+  color: #666;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MOBILE SKILLS — grid de categorías
+   ────────────────────────────────────────────────────────────────────────── */
+.mobile-skills-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mobile-skill-cat {
+  background: #f5f5f5;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.mobile-skill-cat-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: #003399;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mobile-skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   MOBILE OPEN-SOURCE CARD
+   ────────────────────────────────────────────────────────────────────────── */
+.mobile-oss-card {
+  background: linear-gradient(135deg, #f0f7ff 0%, #e8f0ff 100%);
+  border: 1px solid #b0c4e8;
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+}
+
+.mobile-oss-card p {
+  font-size: 11px;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.mobile-oss-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #316ac5;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(49,106,197,0.4);
+  transition: background 0.2s;
+}
+
+.mobile-oss-card a:hover { background: #2458aa; }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Reutilizar tag-pill del diseño de escritorio
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .tag-pill {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Sección activa/oculta via JS
+   ────────────────────────────────────────────────────────────────────────── */
+.mobile-section {
+  display: none;
+}
+
+.mobile-section.active {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Footer con créditos
+   ────────────────────────────────────────────────────────────────────────── */
+.mobile-footer {
+  text-align: center;
+  color: rgba(255,255,255,0.7);
+  font-size: 10px;
+  padding: 16px 12px 24px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}

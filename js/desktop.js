@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'win-notepad', title: 'Curriculum.txt', icon: 'notepad', desc: 'CV en texto / Descargar' },
     { id: 'win-msn', title: 'MSN Messenger', icon: 'msn', desc: 'Contacto directo / Chat' },
     { id: 'win-cmd', title: 'Símbolo del sistema', icon: 'cmd', desc: 'Terminal interactiva' },
-    { id: 'win-wmp', title: 'Windows Media Player', icon: 'media-player', desc: 'Música retro & visualizer' },
     { id: 'win-paint', title: 'Paint.exe', icon: 'paint', desc: 'Editor de dibujo clásico' },
     { id: 'win-minesweeper', title: 'Buscaminas', icon: 'minesweeper', desc: 'Juego retro clásico' },
     { id: 'win-recycle', title: 'Papelera de reciclaje', icon: 'recycle-bin', desc: 'Archivos eliminados' }

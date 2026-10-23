@@ -14,7 +14,7 @@ class WindowManager {
     const el = document.getElementById(id);
     if (!el) return null;
 
-    const iconName = options.icon || el.dataset.icon || 'folder';
+    const iconName = options.icon || el.dataset.winIcon || el.dataset.icon || 'folder';
     const winData = {
       id,
       el,
@@ -188,6 +188,7 @@ class WindowManager {
     const item = document.createElement('div');
     item.className = 'taskbar-item';
     item.id = `tb-${win.id}`;
+    item.style.display = 'none'; // Initially hidden until window is opened!
     item.innerHTML = `
       <div class="taskbar-item-icon">${window.XPIcons.get(win.icon, 16)}</div>
       <div class="taskbar-item-title">${win.title}</div>

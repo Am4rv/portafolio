@@ -288,3 +288,141 @@ body.crt-enabled .scanlines-overlay {
   background-color: #D3D0C5;
   margin: 3px 1px;
 }
+
+/* ==========================================================================
+   Windows XP Bootscreen (Encendido del PC)
+   ========================================================================== */
+#xp-boot-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #000000;
+  z-index: 9999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+}
+
+.boot-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 38px;
+}
+
+.boot-logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.boot-ms-text {
+  font-family: var(--font-title);
+  font-size: 13px;
+  color: #FFFFFF;
+  letter-spacing: 2px;
+  margin-bottom: 2px;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.boot-main-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.boot-windows-text {
+  font-family: var(--font-title);
+  font-weight: bold;
+  font-size: 42px;
+  color: #FFFFFF;
+  letter-spacing: -0.5px;
+}
+
+.boot-xp-text {
+  font-family: var(--font-title);
+  font-size: 36px;
+  font-weight: 900;
+  font-style: italic;
+  color: #FF6600;
+  margin-left: 2px;
+  position: relative;
+  top: -5px;
+}
+
+.boot-edition-text {
+  font-family: var(--font-title);
+  font-size: 12px;
+  color: #2E81FF;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  align-self: flex-end;
+  margin-top: -6px;
+  margin-right: 4px;
+}
+
+/* Authentic 3-block crawling loader */
+.boot-loader-track {
+  width: 174px;
+  height: 15px;
+  border: 1px solid #555555;
+  border-radius: 4px;
+  padding: 2px;
+  background: #000000;
+  box-shadow: inset 1px 1px 2px #000, 0 0 2px rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  position: relative;
+}
+
+.boot-loader-blocks {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  display: flex;
+  gap: 2px;
+  height: 9px;
+  width: 32px;
+  animation: xpBootCrawling 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.boot-block {
+  width: 9px;
+  height: 9px;
+  border-radius: 1px;
+  background: linear-gradient(to bottom, #5ba4ff 0%, #206fe8 50%, #0843b0 100%);
+  box-shadow: 0 0 4px #2b7ce8;
+}
+
+@keyframes xpBootCrawling {
+  0% {
+    left: -40px;
+  }
+  100% {
+    left: 175px;
+  }
+}
+
+.boot-footer {
+  position: absolute;
+  bottom: 28px;
+  text-align: center;
+  color: #888888;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.boot-footer span {
+  animation: bootPulse 2s ease-in-out infinite;
+}
+
+@keyframes bootPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+

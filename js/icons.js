@@ -373,10 +373,10 @@ const XPIcons = {
 
 window.XPIcons = XPIcons;
 
-// Auto-populate elements with data-icon attribute
+// Auto-populate elements with data-render-icon attribute
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('[data-icon]').forEach(el => {
-    const iconName = el.dataset.icon;
+  document.querySelectorAll('[data-render-icon]').forEach(el => {
+    const iconName = el.dataset.renderIcon;
     const size = parseInt(el.dataset.iconSize || '16', 10);
     el.innerHTML = XPIcons.get(iconName, size);
   });

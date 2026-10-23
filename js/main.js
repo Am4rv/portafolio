@@ -48,13 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     defaultHeight: 360
   });
 
-  wm.registerWindow('win-wmp', {
-    title: 'Windows Media Player',
-    icon: 'media-player',
-    defaultWidth: 480,
-    defaultHeight: 380
-  });
-
   wm.registerWindow('win-paint', {
     title: 'Paint.exe',
     icon: 'paint',
@@ -112,20 +105,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Auto-open primary windows on first visit
-  // For screen space convenience, we open "Mi PC" and "Mis Documentos" with slight cascade
-  setTimeout(() => {
-    wm.openWindow('win-about');
-  }, 300);
+  // Windows XP Boot Sequence
+  const bootScreen = document.getElementById('xp-boot-screen');
+  let booted = false;
 
-  setTimeout(() => {
-    wm.openWindow('win-projects');
-  }, 600);
+  const finishBoot = () => {
+    if (booted) return;
+    booted = true;
 
-  // Play startup sound on first user interaction anywhere
-  const firstInteract = () => {
+    // Play authentic startup chime
     window.xpSound.playStartup();
-    window.removeEventListener('pointerdown', firstInteract);
+
+    if (bootScreen) {
+      bootScreen.style.opacity = '0';
+      setTimeout(() => {
+        bootScreen.style.display = 'none';
+        // Auto-open Mi PC window once desktop is ready
+        wm.openWindow('win-about');
+      }, 500);
+    } else {
+      wm.openWindow('win-about');
+    }
   };
-  window.addEventListener('pointerdown', firstInteract);
+
+  if (bootScreen) {
+    // Normal boot lasts ~2.6 seconds, giving time to appreciate the classic crawling loader
+    const bootTimer = setTimeout(finishBoot, 2600);
+
+    // Or skip immediately if the user clicks anywhere or presses a key
+    bootScreen.addEventListener('click', () => {
+      clearTimeout(bootTimer);
+      finishBoot();
+    });
+
+    window.addEventListener('keydown', () => {
+      clearTimeout(bootTimer);
+      finishBoot();
+    }, { once: true });
+  } else {
+    setTimeout(finishBoot, 300);
+  }
 });
