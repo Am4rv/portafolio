@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="css/xp-window.css">
   <link rel="stylesheet" href="css/xp-taskbar.css">
   <link rel="stylesheet" href="css/xp-apps.css">
+  <link rel="stylesheet" href="css/xp-mobile.css">
+</head>
 <body>
 
   <!-- Windows XP Classic Bootscreen -->
@@ -727,6 +729,45 @@ Escribe 'help' para ver los comandos interactivos disponibles.
         <span>Apagar equipo</span>
       </button>
     </div>
+  </div>
+
+  <!-- ========================================================================
+       AMARUOS MOBILE SHELL (Vista optimizada para pantallas < 768px)
+       ======================================================================== -->
+  <div id="mobile-shell">
+    <!-- Header de Perfil Mobile -->
+    <header class="mobile-header">
+      <div class="mobile-avatar">💻</div>
+      <div class="mobile-header-info">
+        <h1>Amaru Ríos Figueroa</h1>
+        <p>Software Engineer / Full-Stack</p>
+      </div>
+      <div class="mobile-contact-bar">
+        <a href="https://www.linkedin.com/in/amaru-rios-figueroa-02a391319/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Am4rv" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:amaruriosfigueroa@gmail.com">Correo</a>
+        <a href="https://wa.me/56949254442" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </header>
+
+    <!-- Barra de Navegación Sticky -->
+    <nav class="mobile-nav">
+      <button class="mobile-nav-btn active" data-mobile-section="mob-sec-about">Sobre Mí</button>
+      <button class="mobile-nav-btn" data-mobile-section="mob-sec-exp">Experiencia</button>
+      <button class="mobile-nav-btn" data-mobile-section="mob-sec-skills">Habilidades</button>
+      <button class="mobile-nav-btn" data-mobile-section="mob-sec-edu">Educación</button>
+    </nav>
+
+    <!-- Contenido Mobile (poblado dinámicamente por portfolio-render.js) -->
+    <main class="mobile-content" id="mobile-content-root">
+      <!-- Secciones generadas dinámicamente -->
+    </main>
+
+    <!-- Footer Mobile -->
+    <footer class="mobile-footer">
+      <div>Amaru Ríos Figueroa • Portafolio Windows XP</div>
+      <div style="margin-top: 4px; opacity: 0.8;">Santiago, Chile • UTEM</div>
+    </footer>
   </div>
 
   <!-- ========================================================================

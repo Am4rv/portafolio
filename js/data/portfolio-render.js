@@ -227,13 +227,177 @@
     });
   }
 
+  // ── RENDER: Vista Mobile (#mobile-shell) ──────────────────
+
+  function buildMobileShell() {
+    const root = document.getElementById('mobile-content-root');
+    if (!root) return;
+
+    root.innerHTML = '';
+    const p = D.profile;
+
+    // Sección 1: Sobre Mí
+    const secAbout = el('div', { id: 'mob-sec-about', class: 'mobile-section active' },
+      el('div', { class: 'mobile-panel' },
+        el('div', { class: 'mobile-panel-title' },
+          el('span', {}, '👤'),
+          el('span', {}, 'Perfil Profesional'),
+        ),
+        el('div', { class: 'mobile-panel-body' },
+          ...p.bio.map(b => html('p', { class: 'mobile-bio' }, b)),
+          el('ul', { class: 'mobile-key-points' },
+            ...p.keyPoints.map(kp => el('li', {}, kp)),
+          ),
+        ),
+      ),
+      el('div', { class: 'mobile-panel' },
+        el('div', { class: 'mobile-panel-title' },
+          el('span', {}, '💻'),
+          el('span', {}, 'Datos del Sistema'),
+        ),
+        el('div', { class: 'mobile-panel-body' },
+          html('div', { style: 'font-size:11px;line-height:1.7;color:#333;' },
+            `<strong>Ubicación:</strong> ${p.location}<br>` +
+            `<strong>Universidad:</strong> ${p.university}<br>` +
+            `<strong>Stack:</strong> ${p.stack}`
+          ),
+        ),
+      ),
+    );
+
+    // Sección 2: Experiencia
+    const expElements = D.experience.map(exp => {
+      if (exp.isOpenSource) {
+        return el('div', { class: 'mobile-oss-card' },
+          el('div', { style: 'font-weight:bold;color:#003399;font-size:12px;margin-bottom:6px;' }, exp.company),
+          el('p', {}, exp.description),
+          el('a', { href: exp.link, target: '_blank', rel: 'noopener' }, exp.linkLabel || 'Ver en GitHub ↗'),
+        );
+      }
+
+      return el('div', { class: 'mobile-exp-card' },
+        el('div', { class: 'mobile-exp-header' },
+          el('span', { class: 'mobile-exp-company' }, exp.company),
+          el('span', { class: 'mobile-exp-badge' }, exp.badge),
+        ),
+        el('div', { class: 'mobile-exp-dates' }, `${exp.role} • ${exp.period}`),
+        el('ul', { class: 'mobile-exp-bullets' },
+          ...exp.bullets.map(b => html('li', {}, b)),
+        ),
+        exp.tags && exp.tags.length > 0
+          ? el('div', { class: 'mobile-exp-tags' },
+              ...exp.tags.map(t => el('span', { class: 'tag-pill' }, t)),
+            )
+          : null,
+      );
+    });
+
+    const secExp = el('div', { id: 'mob-sec-exp', class: 'mobile-section' },
+      el('div', { class: 'mobile-panel' },
+        el('div', { class: 'mobile-panel-title' },
+          el('span', {}, '📁'),
+          el('span', {}, 'Experiencia Profesional'),
+        ),
+        el('div', { class: 'mobile-panel-body' },
+          ...expElements,
+        ),
+      ),
+    );
+
+    // Sección 3: Habilidades
+    const skillCats = D.skills.map(cat =>
+      el('div', { class: 'mobile-skill-cat' },
+        el('div', { class: 'mobile-skill-cat-title' },
+          el('span', {}, cat.icon),
+          el('span', {}, cat.title),
+        ),
+        el('div', { class: 'mobile-skill-tags' },
+          ...cat.items.map(name => el('span', { class: 'tag-pill' }, name)),
+        ),
+      )
+    );
+
+    const secSkills = el('div', { id: 'mob-sec-skills', class: 'mobile-section' },
+      el('div', { class: 'mobile-panel' },
+        el('div', { class: 'mobile-panel-title' },
+          el('span', {}, '⚙️'),
+          el('span', {}, 'Habilidades & Tecnologías'),
+        ),
+        el('div', { class: 'mobile-panel-body' },
+          el('div', { class: 'mobile-skills-grid' }, ...skillCats),
+        ),
+      ),
+    );
+
+    // Sección 4: Educación y Certificaciones
+    const eduItems = D.education.map(edu =>
+      el('div', { class: 'mobile-edu-item' },
+        el('div', { class: 'mobile-edu-degree' }, edu.degree),
+        el('div', { class: 'mobile-edu-institution' }, edu.institution),
+        el('div', { class: 'mobile-edu-period' }, edu.period),
+        el('p',   { class: 'mobile-edu-desc' }, edu.description),
+      )
+    );
+
+    const certItems = D.certifications.map(c =>
+      el('div', { class: 'mobile-cert-item' },
+        el('div', { class: 'mobile-cert-name' }, c.name),
+        el('div', { class: 'mobile-cert-desc' }, c.description),
+      )
+    );
+
+    const secEdu = el('div', { id: 'mob-sec-edu', class: 'mobile-section' },
+      el('div', { class: 'mobile-panel' },
+        el('div', { class: 'mobile-panel-title' },
+          el('span', {}, '🎓'),
+          el('span', {}, 'Educación'),
+        ),
+        el('div', { class: 'mobile-panel-body' }, ...eduItems),
+      ),
+      el('div', { class: 'mobile-panel' },
+        el('div', { class: 'mobile-panel-title' },
+          el('span', {}, '📜'),
+          el('span', {}, 'Certificaciones'),
+        ),
+        el('div', { class: 'mobile-panel-body' }, ...certItems),
+      ),
+    );
+
+    root.appendChild(secAbout);
+    root.appendChild(secExp);
+    root.appendChild(secSkills);
+    root.appendChild(secEdu);
+
+    // Listeners para la barra de navegación mobile
+    document.querySelectorAll('.mobile-nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.dataset.mobileSection;
+        if (!targetId) return;
+
+        document.querySelectorAll('.mobile-nav-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        document.querySelectorAll('.mobile-section').forEach(s => s.classList.remove('active'));
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.classList.add('active');
+          const mobileShell = document.getElementById('mobile-shell');
+          if (mobileShell) {
+            mobileShell.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }
+      });
+    });
+  }
+
   // ── INIT ─────────────────────────────────────────────────────
 
   function init() {
     buildWinAbout();
     buildWinProjects();
     buildWinSkills();
-    console.log('[renderer] Portafolio renderizado desde portfolio-data.js ✓');
+    buildMobileShell();
+    console.log('[renderer] Portafolio renderizado desde portfolio-data.js (desktop + mobile) ✓');
   }
 
   if (document.readyState === 'loading') {
